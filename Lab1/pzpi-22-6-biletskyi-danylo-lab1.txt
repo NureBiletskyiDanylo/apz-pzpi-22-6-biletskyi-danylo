@@ -54,6 +54,7 @@
 13:33 - Scope and Limitations, Limitations and Exclusions 
 14:40 - Business Context, Operating Environment
 
+Посилання на Github: https://github.com/NureBiletskyiDanylo/apz-pzpi-22-6-biletskyi-danylo/tree/main/Lab1
 
 ДОДАТОК Б
 Vision and Scope Document
