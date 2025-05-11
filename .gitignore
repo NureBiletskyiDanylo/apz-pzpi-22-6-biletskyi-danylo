@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Lab2/pzpi-22-6-biletskyi-danylo-lab2/MediStoS/.vs
+/Lab2/pzpi-22-6-biletskyi-danylo-lab2/MediStoS/bin/Debug/net9.0
+/Lab2/pzpi-22-6-biletskyi-danylo-lab2/MediStoS/obj
