@@ -1,0 +1,22 @@
+.ng-invalid.ng-touched:not(form) {
+  border-color: #dc3545;
+}
+
+input[readonly] {
+  background-color: #f8f9fa;
+  cursor: not-allowed;
+}
+
+.card {
+  border-radius: 0.5rem;
+}
+
+.card-header {
+  border-radius: 0.5rem 0.5rem 0 0 !important;
+}
+
+@media (max-width: 768px) {
+  .card-body {
+    padding: 1rem;
+  }
+}

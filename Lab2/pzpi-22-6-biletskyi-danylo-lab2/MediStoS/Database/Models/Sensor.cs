@@ -25,7 +25,7 @@ public class Sensor
 
     public Sensor(SensorCreateModel model)
     {
-        Type = model.Type;
+        Type = Enum.Parse<SensorType>(model.Type);
         SerialNumber = model.SerialNumber;
         
         WarehouseId = model.WarehouseId;

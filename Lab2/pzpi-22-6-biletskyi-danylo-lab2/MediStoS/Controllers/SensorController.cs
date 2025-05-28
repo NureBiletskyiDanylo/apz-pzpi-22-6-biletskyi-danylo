@@ -1,5 +1,6 @@
 ﻿namespace MediStoS.Controllers;
 
+using AutoMapper;
 using MediStoS.Database.Models;
 using MediStoS.Database.Repository.SensorRepository;
 using MediStoS.Database.Repository.StorageViolationRepository;
@@ -18,6 +19,7 @@ public class SensorController : ControllerBase
 {
     private readonly RelativeHumidityCalculationService _humidityCalculationService = new RelativeHumidityCalculationService();
     private readonly StorageRequirementsChecker _checker;
+    private IMapper mapper;
 
     private ISensorRepository sensorRepository;
     public SensorController(
@@ -25,7 +27,8 @@ public class SensorController : ControllerBase
         IWarehouseRepository warehouseRepository,
         IStorageViolationRepository storageViolationRepository,
         IUserRepository userRepository,
-        IEmailSender emailSender)
+        IEmailSender emailSender,
+        IMapper mapper)
     {
         _checker = new StorageRequirementsChecker(sensorRepository,
             warehouseRepository,
@@ -34,6 +37,7 @@ public class SensorController : ControllerBase
             emailSender
             );
         this.sensorRepository = sensorRepository;
+        this.mapper = mapper;
     }
     /// <summary>
     /// Handles a request of getting a sensor by its id 
@@ -47,7 +51,7 @@ public class SensorController : ControllerBase
     [ProducesResponseType(typeof(Sensor), 200)]
     public async Task<IActionResult> GetSensor(int id)
     {
-        Sensor? sensor = await sensorRepository.GetSensor(id);
+        SensorDto? sensor = await sensorRepository.GetSensor(id);
         if (sensor == null)
         {
             return NotFound($"Sensor by id {id} was not found");
@@ -94,13 +98,13 @@ public class SensorController : ControllerBase
     [SwaggerOperation("Delete sensor object by it's id")]
     public async Task<IActionResult> DeleteSensor(int id)
     {
-        Sensor? sensor = await sensorRepository.GetSensor(id);
+        SensorDto? sensor = await sensorRepository.GetSensor(id);
         if (sensor == null)
         {
             return NotFound($"Sensor by id {id} was not found");
         }
 
-        bool result = await sensorRepository.DeleteSensor(sensor);
+        bool result = await sensorRepository.DeleteSensor(sensor.Id);
         if (!result) return BadRequest("Sensor was not deleted");
         return Ok();
     }
@@ -123,7 +127,7 @@ public class SensorController : ControllerBase
             return BadRequest("Coudln't get updated sensor. Data was corrupted");
         }
 
-        Sensor? oldSensor = await sensorRepository.GetSensor(id, false);
+        SensorDto? oldSensor = await sensorRepository.GetSensor(id);
         if (oldSensor == null)
         {
             return NotFound($"Sensor by the specified Id : {id} was not found");
@@ -159,7 +163,7 @@ public class SensorController : ControllerBase
             return BadRequest("Coudln't get updated sensor. Data was corrupted");
         }
 
-        Sensor? specifiedSensor = await sensorRepository.GetSensor(model.Id, true);
+        SensorDto? specifiedSensor = await sensorRepository.GetSensor(model.Id);
         if (specifiedSensor == null)
         {
             return NotFound($"Sensor by the specified Id : {model.Id} was not found");
@@ -172,9 +176,9 @@ public class SensorController : ControllerBase
         
         if (model.Type == Enums.SensorType.Humidity)
         {
-            List<Sensor> sensors = await sensorRepository
+            List<SensorDto> sensors = await sensorRepository
                 .GetSensorsByWarehouseId(specifiedSensor.WarehouseId);
-            var sensorsWithTemp = sensors.Where(a => a.Type == Enums.SensorType.Temperature).ToList();
+            var sensorsWithTemp = sensors.Where(a => a.Type == Enums.SensorType.Temperature.ToString()).ToList();
             if (sensorsWithTemp.Count() == 0) 
                 return BadRequest("Can't measure relative humidity, as there are " +
                     "no temperature sensors in the warehouse");
@@ -189,7 +193,8 @@ public class SensorController : ControllerBase
             specifiedSensor.Value = model.Value;
         }
 
-        bool result = await sensorRepository.UpdateSensor(specifiedSensor);
+        
+        bool result = await sensorRepository.UpdateSensor(mapper.Map<Sensor>(specifiedSensor));
         if (!result) return BadRequest("It is impossible to set a value to a sensor now!");
         await _checker.StorageRequirementsValidation(specifiedSensor.Id, specifiedSensor.WarehouseId);
         return Ok(specifiedSensor);
@@ -210,7 +215,15 @@ public class SensorController : ControllerBase
         return Ok(await sensorRepository.GetSensorsByWarehouseId(warehouseId));
     }
 
-    private float CalculateRelativeHumidity(List<Sensor> sensors, float absoluteHumidity)
+    [HttpGet]
+    [Route("{warehouseId:int}/count")]
+    [Authorize]
+    public async Task<ActionResult> GetSensorCount(int warehouseId)
+    {
+        return Ok(sensorRepository.GetSensorCount(warehouseId));
+    }
+
+    private float CalculateRelativeHumidity(List<SensorDto> sensors, float absoluteHumidity)
     {
         float averageTemperature = 0;
         foreach (var sensor in sensors)
@@ -230,7 +243,7 @@ public class SensorController : ControllerBase
     [Route("{warehouseId}/GetSensorsForIoT")]
     public async Task<IActionResult> GetSensorsForIoT(int warehouseId)
     {
-        List<Sensor> sensors = await sensorRepository.GetSensorsByWarehouseId(warehouseId);
+        List<SensorDto> sensors = await sensorRepository.GetSensorsByWarehouseId(warehouseId);
         List<SensorsToIoTSend> response = sensors.Select(x => new SensorsToIoTSend(x)).ToList();
         return Ok(response);
     }

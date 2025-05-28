@@ -1,0 +1,134 @@
+<nav aria-label="breadcrumb" class="mb-3">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item" *ngIf="batchForm.get('medicine_id')?.disabled">
+      <a [routerLink]="['/medicine/view', batchForm.get('medicine_id')?.value]">
+        Medicine
+      </a>
+    </li>
+    <li class="breadcrumb-item" *ngIf="batchForm.get('warehouse_id')?.disabled">
+      <a [routerLink]="['/warehouse/view', batchForm.get('warehouse_id')?.value]">
+        Warehouse
+      </a>
+    </li>
+    <li class="breadcrumb-item active">Create Batch</li>
+  </ol>
+</nav>
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+          <h3 class="mb-0">
+            <i class="bi bi-plus-circle me-2"></i>
+            Create New Batch
+          </h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="batchForm" (ngSubmit)="onSubmit()">
+            <!-- Batch Number -->
+            <div class="mb-3">
+              <label class="form-label">Batch Number</label>
+              <input type="text" class="form-control" formControlName="batch_number"
+                     [ngClass]="{ 'is-invalid': batchForm.get('batch_number')?.touched && batchForm.get('batch_number')?.invalid }">
+              <div class="invalid-feedback" *ngIf="batchForm.get('batch_number')?.errors?.['required']">
+                Batch number is required
+              </div>
+              <div class="invalid-feedback" *ngIf="batchForm.get('batch_number')?.errors?.['maxlength']">
+                Maximum 50 characters
+              </div>
+            </div>
+
+            <!-- Quantity -->
+            <div class="mb-3">
+              <label class="form-label">Quantity</label>
+              <input type="number" class="form-control" formControlName="quantity"
+                     [ngClass]="{ 'is-invalid': batchForm.get('quantity')?.touched && batchForm.get('quantity')?.invalid }">
+              <div class="invalid-feedback" *ngIf="batchForm.get('quantity')?.errors?.['required']">
+                Quantity is required
+              </div>
+              <div class="invalid-feedback" *ngIf="batchForm.get('quantity')?.errors?.['min']">
+                Minimum quantity is 1
+              </div>
+              <div class="invalid-feedback" *ngIf="batchForm.get('quantity')?.errors?.['max']">
+                Maximum quantity exceeded
+              </div>
+            </div>
+
+            <!-- Manufacture Date -->
+            <div class="mb-3">
+              <label class="form-label">Manufacture Date</label>
+              <input type="date" class="form-control" formControlName="manufacture_date"
+                     [ngClass]="{ 'is-invalid': batchForm.get('manufacture_date')?.touched && batchForm.get('manufacture_date')?.invalid }">
+              <div class="invalid-feedback" *ngIf="batchForm.get('manufacture_date')?.errors?.['required']">
+                Manufacture date is required
+              </div>
+            </div>
+
+            <!-- Expiration Date -->
+            <div class="mb-3">
+              <label class="form-label">Expiration Date</label>
+              <input type="date" class="form-control" formControlName="expiration_date"
+                     [ngClass]="{ 'is-invalid': batchForm.get('expiration_date')?.touched && batchForm.get('expiration_date')?.invalid }">
+              <div class="invalid-feedback" *ngIf="batchForm.get('expiration_date')?.errors?.['required']">
+                Expiration date is required
+              </div>
+            </div>
+
+            <!-- Warehouse Selection -->
+<div class="mb-3">
+  <label class="form-label">Warehouse</label>
+  <select class="form-select" formControlName="warehouse_id"
+          [ngClass]="{ 'is-invalid': batchForm.get('warehouse_id')?.touched && batchForm.get('warehouse_id')?.invalid }"
+          [disabled]="batchForm.get('warehouse_id')?.disabled ?? false">
+    <option value="">Select Warehouse</option>
+    <option *ngFor="let warehouse of warehouses" [value]="warehouse.id">
+      {{ warehouse.name }} ({{ warehouse.address }})
+    </option>
+  </select>
+  <div *ngIf="batchForm.get('warehouse_id')?.disabled" class="form-text text-muted">
+    Creating batch for this specific warehouse
+  </div>
+  <div class="invalid-feedback" *ngIf="batchForm.get('warehouse_id')?.errors?.['required']">
+    Warehouse selection is required
+  </div>
+</div>
+
+            <!-- Medicine Selection -->
+            <div class="mb-3">
+            <label class="form-label">Medicine</label>
+            <select class="form-select" formControlName="medicine_id"
+                    [ngClass]="{ 'is-invalid': batchForm.get('medicine_id')?.touched && batchForm.get('medicine_id')?.invalid }"
+                    [disabled]="batchForm.get('medicine_id')?.disabled ?? false">
+                <option value="">Select Medicine</option>
+                <option *ngFor="let medicine of medicines" [value]="medicine.id">
+                {{ medicine.name }} ({{ medicine.manufacturer }})
+                </option>
+            </select>
+            <div *ngIf="batchForm.get('medicine_id')?.disabled" class="form-text text-muted">
+                Creating batch for this specific medicine
+            </div>
+            <div class="invalid-feedback" *ngIf="batchForm.get('medicine_id')?.errors?.['required']">
+                Medicine selection is required
+            </div>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="d-flex justify-content-end gap-2 mt-4">
+              <button type="button" class="btn btn-outline-secondary" 
+                      (click)="router.navigate(['/batches'])">
+                Cancel
+              </button>
+              <button type="submit" class="btn btn-primary" [disabled]="isSubmitting || batchForm.invalid || isLoading">
+                <span *ngIf="!isSubmitting">Create Batch</span>
+                <span *ngIf="isSubmitting">
+                  <span class="spinner-border spinner-border-sm me-1"></span>
+                  Creating...
+                </span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

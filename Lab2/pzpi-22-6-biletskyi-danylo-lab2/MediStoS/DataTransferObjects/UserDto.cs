@@ -14,6 +14,6 @@ public class UserDto
     [JsonPropertyName("email")]
     public string Email { get; set; } = string.Empty;
     [JsonPropertyName("role")]
-    public Roles Role { get; set; }
+    public string Role { get; set; } = string.Empty;
 
 }

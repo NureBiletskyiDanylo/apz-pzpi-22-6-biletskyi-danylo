@@ -8,9 +8,17 @@ namespace MediStoS.Database.Repository.MedicineRepository;
 
 public class MedicineRepository(ApplicationDbContext context, IMapper mapper) : IMedicineRepository
 {
-    public async Task<MedicineDto?> GetMedicine(int id)
+    public async Task<MedicineDto?> GetMedicine(int id, bool withBatch = false)
     {
-        Medicine? medicine = await context.Medicines.Include(a => a.Batches).ThenInclude(a => a.User).FirstOrDefaultAsync(a => a.Id == id);
+        Medicine? medicine;
+        if (withBatch)
+        {
+        medicine = await context.Medicines.Include(a => a.Batches).ThenInclude(a => a.User).FirstOrDefaultAsync(a => a.Id == id);
+        }
+        else
+        {
+        medicine = await context.Medicines.FirstOrDefaultAsync(a => a.Id == id);
+        }
         if (medicine == null) throw new ArgumentNullException(nameof(medicine), "Medicine was not found");
         MedicineDto medicineDto = mapper.Map<MedicineDto>(medicine);
         return medicineDto;

@@ -1,0 +1,59 @@
+<div class="card mb-3 shadow-sm">
+  <div class="card-header bg-primary text-white">
+    <h5 class="card-title mb-0">{{ warehouse.name }}</h5>
+    <div>
+      <button 
+        class="btn btn-sm btn-primary"
+        (click)="onView()">
+        <i class="bi bi-eye"></i> View
+      </button>
+      <button 
+        class="btn btn-sm btn-warning me-2"
+        (click)="onEdit()">
+        <i class="bi bi-pencil"></i> Edit
+      </button>
+      <button 
+        class="btn btn-sm btn-danger"
+        (click)="onDelete()">
+        <i class="bi bi-trash"></i> Delete
+      </button>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6 mb-2">
+        <p class="card-text">
+          <i class="bi bi-geo-alt-fill me-2"></i>
+          <strong>Address:</strong> {{ warehouse.address }}
+        </p>
+      </div>
+      
+      <div class="col-md-6 mb-2">
+        <p class="card-text">
+          <i class="bi bi-thermometer-half me-2"></i>
+          <strong>Temperature Range:</strong> 
+          {{ warehouse.min_temperature }}°C to {{ warehouse.max_temperature }}°C
+        </p>
+      </div>
+      
+      <div class="col-md-6 mb-2">
+        <p class="card-text">
+          <i class="bi bi-droplet-fill me-2"></i>
+          <strong>Humidity Range:</strong> 
+          {{ warehouse.min_humidity }}% to {{ warehouse.max_humidity}}%
+        </p>
+      </div>
+      
+      <div class="col-md-6 mb-2">
+        <p class="card-text">
+          <i class="bi bi-calendar-event me-2"></i>
+          <strong>Created:</strong> 
+          {{ warehouse.created_at | date:'mediumDate' }}
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer bg-light">
+    <small class="text-muted">ID: {{ warehouse.id }}</small>
+  </div>
+</div>

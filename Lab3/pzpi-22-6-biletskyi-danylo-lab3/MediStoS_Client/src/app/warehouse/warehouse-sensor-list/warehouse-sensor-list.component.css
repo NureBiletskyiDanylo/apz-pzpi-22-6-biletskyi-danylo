@@ -1,0 +1,128 @@
+.sensor-list-container {
+  border: 1px solid #dee2e6;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.toggle-button {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: #f8f9fa;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.2s;
+}
+
+.toggle-button:hover {
+  background-color: #e9ecef;
+}
+
+.sensor-list {
+  background-color: #fff;
+}
+
+.loading-state,
+.empty-state {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.empty-state {
+  color: #6c757d;
+  font-style: italic;
+}
+
+.sensor-item {
+  padding: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.sensor-item:first-child {
+  border-top: none;
+}
+
+.sensor-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.sensor-type {
+  font-weight: 600;
+}
+
+.sensor-type.text-danger {
+  color: #dc3545; /* Temperature color */
+}
+
+.sensor-type.text-info {
+  color: #0dcaf0; /* Humidity color */
+}
+
+.sensor-serial {
+  background-color: #f8f9fa;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+.sensor-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.sensor-details div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sensor-value {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.sensor-value.text-danger {
+  color: #dc3545; /* Temperature value color */
+}
+
+.sensor-value.text-info {
+  color: #0dcaf0; /* Humidity value color */
+}
+
+.sensor-status .badge {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.sensor-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.bi {
+  transition: transform 0.3s ease;
+}
+
+.value-display {
+  transition: color 0.5s ease;
+}
+
+.sensor-item {
+  transition: background-color 0.3s ease;
+}
+
+.sensor-item.updating {
+  background-color: rgba(0, 123, 255, 0.05);
+}

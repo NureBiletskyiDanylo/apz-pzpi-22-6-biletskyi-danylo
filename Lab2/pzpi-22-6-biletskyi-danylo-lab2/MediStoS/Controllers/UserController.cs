@@ -59,9 +59,9 @@ public class UserController(IUserRepository userRepository) : ControllerBase
     [HttpPost]
     [Route("update-role/{id:int}")]
     [Authorize(Roles = "Admin,DBAdmin")]
-    public async Task<ActionResult> UpdateUserRole(int id, [FromBody] string role)
+    public async Task<ActionResult> UpdateUserRole(int id, [FromBody] RoleUpdateDto role)
     {
-        Roles roleValue = Enum.Parse<Roles>(role);
+        Roles roleValue = Enum.Parse<Roles>(role.Role);
 
         bool success = await userRepository.UpdateUserRoleAsync(id, roleValue);
         if (success) return Ok();

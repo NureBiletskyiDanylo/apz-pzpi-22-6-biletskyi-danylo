@@ -1,0 +1,50 @@
+/* Custom validation styles */
+.ng-invalid.ng-touched:not(form) {
+  border-color: #dc3545;
+}
+
+/* Card styling */
+.card {
+  border-radius: 0.5rem;
+}
+
+.card-header {
+  border-radius: 0.5rem 0.5rem 0 0 !important;
+}
+
+/* Select dropdown styling */
+.form-select {
+  cursor: pointer;
+}
+
+/* Loading state */
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .card-body {
+    padding: 1rem;
+  }
+}
+
+select:disabled {
+  background-color: #f8f9fa;
+  cursor: not-allowed;
+  opacity: 1; /* Override default disabled opacity */
+}
+
+.form-text {
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}

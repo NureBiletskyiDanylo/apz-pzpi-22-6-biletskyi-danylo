@@ -106,4 +106,14 @@ public class MedicineController(IMedicineRepository medicineRepository, IMapper 
     {
         return Ok(await medicineRepository.GetMedicines());
     }
+
+    [HttpGet]
+    [Authorize]
+    [Route("{id:int}-with")]
+    [SwaggerOperation("Get medicine with batches")]
+    public async Task<ActionResult> GetMedicineWithBatches(int id)
+    {
+        return Ok(await medicineRepository.GetMedicine(id, true));    
+    }
+
 }

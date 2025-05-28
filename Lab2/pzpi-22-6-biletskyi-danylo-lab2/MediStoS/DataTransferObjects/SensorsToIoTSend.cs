@@ -17,4 +17,10 @@ public class SensorsToIoTSend
         Type = sensor.Type;
     }
 
+    public SensorsToIoTSend(SensorDto sensor)
+    {
+        Id = sensor.Id;
+        Type = Enum.Parse<SensorType>(sensor.Type);
+    }
+
 }

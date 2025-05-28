@@ -1,0 +1,144 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow">
+        <div class="card-header bg-warning text-white">
+          <h3 class="mb-0">
+            <i class="bi bi-pencil-square me-2"></i>
+            Edit Warehouse: {{ warehouseForm.value.name || '' }}
+          </h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="warehouseForm" (ngSubmit)="onSubmit()">
+            <!-- ID (hidden) -->
+            <input type="hidden" formControlName="id">
+
+            <!-- Name Field -->
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input 
+                type="text" 
+                class="form-control" 
+                id="name" 
+                formControlName="name"
+                [ngClass]="{ 'is-invalid': warehouseForm.get('name')?.touched && warehouseForm.get('name')?.invalid }">
+              <div class="invalid-feedback" *ngIf="warehouseForm.get('name')?.errors?.['required']">
+                Name is required
+              </div>
+              <div class="invalid-feedback" *ngIf="warehouseForm.get('name')?.errors?.['maxlength']">
+                Name must be less than 100 characters
+              </div>
+            </div>
+
+            <!-- Address Field -->
+            <div class="mb-3">
+              <label for="address" class="form-label">Address</label>
+              <textarea 
+                class="form-control" 
+                id="address" 
+                rows="3" 
+                formControlName="address"
+                [ngClass]="{ 'is-invalid': warehouseForm.get('address')?.touched && warehouseForm.get('address')?.invalid }"></textarea>
+              <div class="invalid-feedback" *ngIf="warehouseForm.get('address')?.errors?.['required']">
+                Address is required
+              </div>
+              <div class="invalid-feedback" *ngIf="warehouseForm.get('address')?.errors?.['maxlength']">
+                Address must be less than 200 characters
+              </div>
+            </div>
+
+            <!-- Temperature Range -->
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="min_temperature" class="form-label">Min Temperature (°C)</label>
+                <input 
+                  type="number" 
+                  class="form-control" 
+                  id="min_temperature" 
+                  formControlName="min_temperature"
+                  [ngClass]="{ 'is-invalid': warehouseForm.get('min_temperature')?.touched && warehouseForm.get('min_temperature')?.invalid }">
+                <div class="invalid-feedback" *ngIf="warehouseForm.get('min_temperature')?.errors?.['required']">
+                  Minimum temperature is required
+                </div>
+                <div class="invalid-feedback" *ngIf="warehouseForm.get('min_temperature')?.errors?.['min'] || warehouseForm.get('min_temperature')?.errors?.['max']">
+                  Must be between -50°C and 50°C
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label for="max_temperature" class="form-label">Max Temperature (°C)</label>
+                <input 
+                  type="number" 
+                  class="form-control" 
+                  id="max_temperature" 
+                  formControlName="max_temperature"
+                  [ngClass]="{ 'is-invalid': warehouseForm.get('max_temperature')?.touched && warehouseForm.get('max_temperature')?.invalid }">
+                <div class="invalid-feedback" *ngIf="warehouseForm.get('max_temperature')?.errors?.['required']">
+                  Maximum temperature is required
+                </div>
+                <div class="invalid-feedback" *ngIf="warehouseForm.get('max_temperature')?.errors?.['min'] || warehouseForm.get('max_temperature')?.errors?.['max']">
+                  Must be between -50°C and 50°C
+                </div>
+              </div>
+            </div>
+
+            <!-- Humidity Range -->
+            <div class="row mb-4">
+              <div class="col-md-6">
+                <label for="min_humidity" class="form-label">Min Humidity (%)</label>
+                <input 
+                  type="number" 
+                  class="form-control" 
+                  id="min_humidity" 
+                  formControlName="min_humidity"
+                  [ngClass]="{ 'is-invalid': warehouseForm.get('min_humidity')?.touched && warehouseForm.get('min_humidity')?.invalid }">
+                <div class="invalid-feedback" *ngIf="warehouseForm.get('min_humidity')?.errors?.['required']">
+                  Minimum humidity is required
+                </div>
+                <div class="invalid-feedback" *ngIf="warehouseForm.get('min_humidity')?.errors?.['min'] || warehouseForm.get('min_humidity')?.errors?.['max']">
+                  Must be between 0% and 100%
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label for="max_humidity" class="form-label">Max Humidity (%)</label>
+                <input 
+                  type="number" 
+                  class="form-control" 
+                  id="max_humidity" 
+                  formControlName="max_humidity"
+                  [ngClass]="{ 'is-invalid': warehouseForm.get('max_humidity')?.touched && warehouseForm.get('max_humidity')?.invalid }">
+                <div class="invalid-feedback" *ngIf="warehouseForm.get('max_humidity')?.errors?.['required']">
+                  Maximum humidity is required
+                </div>
+                <div class="invalid-feedback" *ngIf="warehouseForm.get('max_humidity')?.errors?.['min'] || warehouseForm.get('max_humidity')?.errors?.['max']">
+                  Must be between 0% and 100%
+                </div>
+              </div>
+            </div>
+
+            <!-- Created At (readonly) -->
+            <div class="mb-3">
+              <label class="form-label">Created At</label>
+              <input 
+                type="text" 
+                class="form-control" 
+                [value]="(warehouseForm.get('created_at')?.value | date:'mediumDate') || ''" 
+                readonly>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="d-flex justify-content-end gap-2">
+              <button type="button" class="btn btn-outline-secondary" 
+                      (click)="router.navigate(['/warehouses'])">
+                Cancel
+              </button>
+              <button type="submit" class="btn btn-warning" [disabled]="warehouseForm.invalid">
+                <i class="bi bi-check-circle me-2"></i>
+                Update Warehouse
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

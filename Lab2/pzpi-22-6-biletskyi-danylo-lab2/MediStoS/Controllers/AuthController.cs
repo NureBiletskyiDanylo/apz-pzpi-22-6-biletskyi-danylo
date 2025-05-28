@@ -35,6 +35,7 @@ public class AuthController(IUserRepository userRepository, ITokenService tokenS
 
         return Ok(new AccountDto
         {
+            Id = user.Id,
             Email = user.Email,
             Token = tokenService.CreateToken(user),
             Role = user.Role.ToString()
@@ -68,6 +69,7 @@ public class AuthController(IUserRepository userRepository, ITokenService tokenS
 
         return Ok(new AccountDto
         {
+            Id = user.Id,
             Email = user.Email,
             Role = user.Role.ToString(),
             Token = tokenService.CreateToken(user)

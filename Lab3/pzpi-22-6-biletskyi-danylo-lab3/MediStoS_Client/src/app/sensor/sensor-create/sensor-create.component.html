@@ -1,0 +1,49 @@
+<div class="container mt-4">
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+      <h4 class="mb-0">
+        <i class="bi bi-plus-circle me-2"></i>
+        Add New Sensor
+      </h4>
+    </div>
+    <div class="card-body">
+      <form #sensorForm="ngForm" (ngSubmit)="onSubmit()">
+        <!-- Sensor Type -->
+        <div class="mb-3">
+          <label for="type" class="form-label">Sensor Type</label>
+          <select class="form-select" id="type" name="type" [(ngModel)]="sensor.type" required>
+            <option value="" disabled selected>Select sensor type</option>
+            <option value="Temperature">Temperature</option>
+            <option value="Humidity">Humidity</option>
+          </select>
+        </div>
+
+        <!-- Serial Number -->
+        <div class="mb-3">
+          <label for="serial_number" class="form-label">Serial Number</label>
+          <input type="text" class="form-control" id="serial_number" name="serial_number" 
+                 [(ngModel)]="sensor.serial_number" required>
+        </div>
+
+        <!-- Warehouse ID (hidden but included in form) -->
+        <input type="hidden" name="warehouse_id" [(ngModel)]="sensor.warehouse_id">
+
+        <!-- Form Actions -->
+        <div class="d-flex justify-content-end gap-2 mt-4">
+          <button type="button" class="btn btn-outline-secondary" (click)="onCancel()">
+            <i class="bi bi-x-circle me-1"></i> Cancel
+          </button>
+          <button type="submit" class="btn btn-primary" [disabled]="!sensorForm.valid || isSubmitting">
+            <span *ngIf="!isSubmitting">
+              <i class="bi bi-check-circle me-1"></i> Create Sensor
+            </span>
+            <span *ngIf="isSubmitting">
+              <span class="spinner-border spinner-border-sm me-1"></span>
+              Creating...
+            </span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

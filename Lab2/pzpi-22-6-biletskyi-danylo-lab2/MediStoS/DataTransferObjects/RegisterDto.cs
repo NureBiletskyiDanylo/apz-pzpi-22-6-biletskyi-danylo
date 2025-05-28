@@ -5,9 +5,9 @@ namespace MediStoS.DataTransferObjects;
 
 public class RegisterDto
 {
-    [JsonPropertyName("first_name")]
+    [JsonPropertyName("firstname")]
     public string FirstName { get; set; } = string.Empty;
-    [JsonPropertyName("last_name")]
+    [JsonPropertyName("lastname")]
     public string LastName { get; set; } = string.Empty;
     [JsonPropertyName("email")]
     public string Email { get; set; } = string.Empty;

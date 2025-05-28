@@ -8,7 +8,7 @@ namespace MediStoS.Database.Repository.MedicineRepository
         Task<bool> AddMedicineAsync(Medicine medicine);
         Task<bool> DeleteMedicine(Medicine medicine);
         Task<bool> DeleteMedicineByIdAsync(int medicineId);
-        Task<MedicineDto?> GetMedicine(int id);
+        Task<MedicineDto?> GetMedicine(int id, bool withBatch = false);
         Task<List<MedicineDto>> GetMedicines();
         Task<bool> UpdateMedicine(Medicine newMedicine);
         Task<bool> UpdateMedicineAsync(MedicineDto medicine);

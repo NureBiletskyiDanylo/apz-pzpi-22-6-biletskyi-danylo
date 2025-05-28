@@ -6,7 +6,7 @@ namespace MediStoS.DataTransferObjects;
 public class SensorCreateModel
 {
     [JsonPropertyName("type")]
-    public SensorType Type { get; set; }
+    public string Type { get; set; } = string.Empty;
     [JsonPropertyName("serial_number")]
     public string SerialNumber { get; set; } = string.Empty;
     [JsonPropertyName("warehouse_id")]

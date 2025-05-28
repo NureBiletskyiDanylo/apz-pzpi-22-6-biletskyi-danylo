@@ -1,0 +1,27 @@
+/* Table styling */
+.table {
+  font-size: 0.9rem;
+}
+
+.table th {
+  font-weight: 600;
+  background-color: #f8f9fa;
+}
+
+/* Action buttons */
+.btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .table-responsive {
+    overflow-x: auto;
+  }
+  
+  .d-flex.gap-2 {
+    flex-wrap: wrap;
+    gap: 0.25rem !important;
+  }
+}

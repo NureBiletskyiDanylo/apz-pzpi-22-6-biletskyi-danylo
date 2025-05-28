@@ -48,7 +48,7 @@ public class UserRepository(ApplicationDbContext context, IMapper mapper) : IUse
         if (originalUser == null) throw new ArgumentNullException("User was not found");
 
         originalUser.FirstName = user.FirstName;
-        originalUser.LastName = user.FirstName;
+        originalUser.LastName = user.LastName;
         originalUser.Email = user.Email;
         return await context.SaveChangesAsync() > 0;
     }

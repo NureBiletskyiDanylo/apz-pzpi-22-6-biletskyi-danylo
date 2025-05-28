@@ -1,0 +1,27 @@
+/* Custom validation styles */
+.ng-invalid.ng-touched:not(form) {
+  border-color: #dc3545;
+}
+
+/* Improve spacing for error messages */
+.invalid-feedback {
+  display: block;
+}
+
+/* Make the card a bit more prominent */
+.card {
+  border-radius: 0.5rem;
+}
+
+/* Style the submit button */
+.btn-warning:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .card-body {
+    padding: 1rem;
+  }
+}

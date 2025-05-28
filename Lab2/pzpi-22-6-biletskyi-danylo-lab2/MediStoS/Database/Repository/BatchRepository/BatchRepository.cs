@@ -88,4 +88,29 @@ public class BatchRepository(ApplicationDbContext context, IMapper mapper) : IBa
     {
         return await context.Medicines.AnyAsync(a => a.Id == medicineId);
     }
+
+    public async Task<int> GetWarehouseLocation(int id)
+    {
+        return await context.Batches.Where(a => a.Id == id).Select(a => a.WarehouseId).FirstAsync();
+    }
+
+
+    public async Task<List<BatchDto>> GetBatchesByWarehouseId(int warehouseId)
+    {
+        var batches = await context.Batches.Where(a => a.WarehouseId == warehouseId).ToListAsync();
+        if (batches == null) return new List<BatchDto>();
+        return mapper.Map<List<BatchDto>>(batches);
+    }
+
+    public int GetBatchesCountByWarehouseId(int warehouseId)
+    {
+        return context.Batches.Count(a => a.WarehouseId == warehouseId);
+    }
+
+    public async Task<int> GetMedicineIdByBatchId(int batchId)
+    {
+        var batch = await context.Batches.FindAsync(batchId);
+        if (batch == null) throw new ArgumentNullException("Batch was not found");
+        return batch.MedicineId;
+    }
 }

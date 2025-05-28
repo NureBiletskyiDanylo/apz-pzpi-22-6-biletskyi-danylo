@@ -1,0 +1,84 @@
+.batch-list-container {
+  border: 1px solid #dee2e6;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.toggle-button {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: #f8f9fa;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.2s;
+}
+
+.toggle-button:hover {
+  background-color: #e9ecef;
+}
+
+.batch-list {
+  background-color: #fff;
+}
+
+.loading-state,
+.empty-state {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.empty-state {
+  color: #6c757d;
+  font-style: italic;
+}
+
+.batch-item {
+  padding: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.batch-item:first-child {
+  border-top: none;
+}
+
+.batch-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.batch-number {
+  font-weight: 600;
+  color: #0d6efd;
+}
+
+.batch-quantity {
+  background-color: #f8f9fa;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+}
+
+.batch-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+.batch-details div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.bi {
+  transition: transform 0.3s ease;
+}

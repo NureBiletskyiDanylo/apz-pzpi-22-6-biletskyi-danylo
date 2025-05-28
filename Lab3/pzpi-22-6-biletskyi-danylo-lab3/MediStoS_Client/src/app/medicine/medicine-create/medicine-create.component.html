@@ -1,0 +1,116 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+          <h3 class="mb-0">
+            <i class="bi bi-plus-circle me-2"></i>
+            Create New Medicine
+          </h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="medicineForm" (ngSubmit)="onSubmit()">
+            <!-- Name -->
+            <div class="mb-3">
+              <label class="form-label">Name</label>
+              <input type="text" class="form-control" formControlName="name"
+                     [ngClass]="{ 'is-invalid': f.name.touched && f.name.errors }">
+              <div class="invalid-feedback" *ngIf="f.name.errors?.['required']">
+                Name is required
+              </div>
+              <div class="invalid-feedback" *ngIf="f.name.errors?.['maxlength']">
+                Maximum 100 characters
+              </div>
+            </div>
+
+            <!-- Manufacturer -->
+            <div class="mb-3">
+              <label class="form-label">Manufacturer</label>
+              <input type="text" class="form-control" formControlName="manufacturer"
+                     [ngClass]="{ 'is-invalid': f.manufacturer.touched && f.manufacturer.errors }">
+              <div class="invalid-feedback" *ngIf="f.manufacturer.errors?.['required']">
+                Manufacturer is required
+              </div>
+              <div class="invalid-feedback" *ngIf="f.manufacturer.errors?.['maxlength']">
+                Maximum 100 characters
+              </div>
+            </div>
+
+            <!-- Description -->
+            <div class="mb-3">
+              <label class="form-label">Description</label>
+              <textarea class="form-control" rows="3" formControlName="description"
+                        [ngClass]="{ 'is-invalid': f.description.touched && f.description.errors }"></textarea>
+              <div class="invalid-feedback" *ngIf="f.description.errors?.['maxlength']">
+                Maximum 500 characters
+              </div>
+            </div>
+
+            <!-- Temperature Range -->
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label class="form-label">Min Temperature (°C)</label>
+                <input type="number" class="form-control" formControlName="min_temperature"
+                       [ngClass]="{ 'is-invalid': f.min_temperature.touched && f.min_temperature.errors }">
+                <div class="invalid-feedback" *ngIf="f.min_temperature.errors?.['required']">
+                  Required
+                </div>
+                <div class="invalid-feedback" *ngIf="f.min_temperature.errors?.['min'] || f.min_temperature.errors?.['max']">
+                  Must be between -50°C and 50°C
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Max Temperature (°C)</label>
+                <input type="number" class="form-control" formControlName="max_temperature"
+                       [ngClass]="{ 'is-invalid': f.max_temperature.touched && f.max_temperature.errors }">
+                <div class="invalid-feedback" *ngIf="f.max_temperature.errors?.['required']">
+                  Required
+                </div>
+                <div class="invalid-feedback" *ngIf="f.max_temperature.errors?.['min'] || f.max_temperature.errors?.['max']">
+                  Must be between -50°C and 50°C
+                </div>
+              </div>
+            </div>
+
+            <!-- Humidity Range -->
+            <div class="row mb-4">
+              <div class="col-md-6">
+                <label class="form-label">Min Humidity (%)</label>
+                <input type="number" class="form-control" formControlName="min_humidity"
+                       [ngClass]="{ 'is-invalid': f.min_humidity.touched && f.min_humidity.errors }">
+                <div class="invalid-feedback" *ngIf="f.min_humidity.errors?.['required']">
+                  Required
+                </div>
+                <div class="invalid-feedback" *ngIf="f.min_humidity.errors?.['min'] || f.min_humidity.errors?.['max']">
+                  Must be between 0% and 100%
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Max Humidity (%)</label>
+                <input type="number" class="form-control" formControlName="max_humidity"
+                       [ngClass]="{ 'is-invalid': f.max_humidity.touched && f.max_humidity.errors }">
+                <div class="invalid-feedback" *ngIf="f.max_humidity.errors?.['required']">
+                  Required
+                </div>
+                <div class="invalid-feedback" *ngIf="f.max_humidity.errors?.['min'] || f.max_humidity.errors?.['max']">
+                  Must be between 0% and 100%
+                </div>
+              </div>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="d-flex justify-content-end gap-2">
+              <button type="button" class="btn btn-outline-secondary" 
+                      (click)="router.navigate(['/medicine'])">
+                Cancel
+              </button>
+              <button type="submit" class="btn btn-primary" [disabled]="medicineForm.invalid">
+                Create Medicine
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

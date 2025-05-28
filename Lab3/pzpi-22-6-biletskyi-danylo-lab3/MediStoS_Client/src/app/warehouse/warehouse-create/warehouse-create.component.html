@@ -1,0 +1,130 @@
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+          <h3 class="mb-0">Create New Warehouse</h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <!-- Name Field -->
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input 
+                type="text" 
+                class="form-control" 
+                id="name" 
+                formControlName="name"
+                [ngClass]="{ 'is-invalid': f.name.touched && f.name.errors }">
+              <div class="invalid-feedback" *ngIf="f.name.errors?.['required']">
+                Name is required
+              </div>
+              <div class="invalid-feedback" *ngIf="f.name.errors?.['maxlength']">
+                Name must be less than 100 characters
+              </div>
+            </div>
+
+            <!-- Address Field -->
+            <div class="mb-3">
+              <label for="address" class="form-label">Address</label>
+              <textarea 
+                class="form-control" 
+                id="address" 
+                rows="3" 
+                formControlName="address"
+                [ngClass]="{ 'is-invalid': f.address.touched && f.address.errors }"></textarea>
+              <div class="invalid-feedback" *ngIf="f.address.errors?.['required']">
+                Address is required
+              </div>
+              <div class="invalid-feedback" *ngIf="f.address.errors?.['maxlength']">
+                Address must be less than 200 characters
+              </div>
+            </div>
+
+            <!-- Temperature Range -->
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="minTemperature" class="form-label">Min Temperature (°C)</label>
+                <input 
+                  type="number" 
+                  class="form-control" 
+                  id="minTemperature" 
+                  formControlName="minTemperature"
+                  [ngClass]="{ 'is-invalid': f.minTemperature.touched && f.minTemperature.errors }">
+                <div class="invalid-feedback" *ngIf="f.minTemperature.errors?.['required']">
+                  Minimum temperature is required
+                </div>
+                <div class="invalid-feedback" *ngIf="f.minTemperature.errors?.['min'] || f.minTemperature.errors?.['max']">
+                  Must be between -50°C and 50°C
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label for="maxTemperature" class="form-label">Max Temperature (°C)</label>
+                <input 
+                  type="number" 
+                  class="form-control" 
+                  id="maxTemperature" 
+                  formControlName="maxTemperature"
+                  [ngClass]="{ 'is-invalid': f.maxTemperature.touched && f.maxTemperature.errors }">
+                <div class="invalid-feedback" *ngIf="f.maxTemperature.errors?.['required']">
+                  Maximum temperature is required
+                </div>
+                <div class="invalid-feedback" *ngIf="f.maxTemperature.errors?.['min'] || f.maxTemperature.errors?.['max']">
+                  Must be between -50°C and 50°C
+                </div>
+              </div>
+            </div>
+
+            <!-- Humidity Range -->
+            <div class="row mb-4">
+              <div class="col-md-6">
+                <label for="minHumidity" class="form-label">Min Humidity (%)</label>
+                <input 
+                  type="number" 
+                  class="form-control" 
+                  id="minHumidity" 
+                  formControlName="minHumidity"
+                  [ngClass]="{ 'is-invalid': f.minHumidity.touched && f.minHumidity.errors }">
+                <div class="invalid-feedback" *ngIf="f.minHumidity.errors?.['required']">
+                  Minimum humidity is required
+                </div>
+                <div class="invalid-feedback" *ngIf="f.minHumidity.errors?.['min'] || f.minHumidity.errors?.['max']">
+                  Must be between 0% and 100%
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label for="maxHumidity" class="form-label">Max Humidity (%)</label>
+                <input 
+                  type="number" 
+                  class="form-control" 
+                  id="maxHumidity" 
+                  formControlName="maxHumidity"
+                  [ngClass]="{ 'is-invalid': f.maxHumidity.touched && f.maxHumidity.errors }">
+                <div class="invalid-feedback" *ngIf="f.maxHumidity.errors?.['required']">
+                  Maximum humidity is required
+                </div>
+                <div class="invalid-feedback" *ngIf="f.maxHumidity.errors?.['min'] || f.maxHumidity.errors?.['max']">
+                  Must be between 0% and 100%
+                </div>
+              </div>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="d-flex justify-content-end gap-2">
+              <button type="button" class="btn btn-outline-secondary" (click)="router.navigate(['/warehouse'])">
+                Cancel
+              </button>
+              <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+                <span *ngIf="!form.invalid">Create Warehouse</span>
+                <span *ngIf="form.invalid" class="d-flex align-items-center">
+                  <span class="spinner-border spinner-border-sm me-2" *ngIf="form.invalid"></span>
+                  Please complete all fields
+                </span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

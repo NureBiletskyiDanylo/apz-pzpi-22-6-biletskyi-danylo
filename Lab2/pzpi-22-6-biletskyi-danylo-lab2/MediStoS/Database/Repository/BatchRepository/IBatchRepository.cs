@@ -12,5 +12,9 @@ namespace MediStoS.Database.Repository.BatchRepository
         Task<List<BatchDto>> GetBatchesByMedicineId(int medicineId);
         Task<bool> UpdateBatch(BatchDto newBatch);
         Task<string> ValidateBatchCreateDtoAsync(BatchCreateDto createDto);
+        Task<int> GetWarehouseLocation(int id);
+        Task<List<BatchDto>> GetBatchesByWarehouseId(int warehouseId);
+        int GetBatchesCountByWarehouseId(int warehouseId);
+        Task<int> GetMedicineIdByBatchId(int batchId);
     }
 }

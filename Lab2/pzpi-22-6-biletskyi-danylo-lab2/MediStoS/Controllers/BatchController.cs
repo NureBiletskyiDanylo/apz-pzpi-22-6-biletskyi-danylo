@@ -114,4 +114,68 @@ public class BatchController(IBatchRepository batchRepository, IMapper mapper) :
     {
         return Ok(await batchRepository.GetBatchesByMedicineId(medicineId));
     }
+
+    /// <summary>
+    /// Handles a request of getting a list of batches for specific warehouse
+    /// </summary>
+    /// <param name="warehouseId">Warehouse id<see cref="int"/></param>
+    /// <returns>Ok with a list of batches<see cref="Task{IActionResult}"/></returns>
+    [HttpGet]
+    [Route("{warehouseId:int}/batches-by-warehouse")]
+    [Authorize]
+    [SwaggerOperation("Get all batches, made for specified medicine")]
+    [ProducesResponseType(typeof(List<BatchDto>), 200)]
+    public async Task<IActionResult> GetBatchesByWarehouseId(int warehouseId)
+    {
+        return Ok(await batchRepository.GetBatchesByWarehouseId(warehouseId));
+    }
+
+    /// <summary>
+    /// Handles a request of getting a count of batches for specific warehouse
+    /// </summary>
+    /// <param name="warehouseId">Warehouse id<see cref="int"/></param>
+    /// <returns>Ok with count of batches <see cref="Task{IActionResult}"/></returns>
+    [HttpGet]
+    [Route("{warehouseId:int}/batch-count")]
+    [Authorize]
+    [SwaggerOperation("Get all batches, made for specified medicine")]
+    [ProducesResponseType(typeof(List<BatchDto>), 200)]
+    public async Task<IActionResult> GetBatchCountByWarehouseId(int warehouseId)
+    {
+        return Ok(batchRepository.GetBatchesCountByWarehouseId(warehouseId));
+    }
+
+    /// <summary>
+    /// Handles a request of getting a count of batches for specific warehouse
+    /// </summary>
+    /// <param name="warehouseId">Warehouse id<see cref="int"/></param>
+    /// <returns>Ok with count of batches <see cref="Task{IActionResult}"/></returns>
+    [HttpGet]
+    [Route("{batchId:int}/medicine-id")]
+    [Authorize]
+    [SwaggerOperation("Get all batches, made for specified medicine")]
+    [ProducesResponseType(typeof(List<BatchDto>), 200)]
+    public async Task<IActionResult> GetMedicineIdByBatchId(int batchId)
+    {
+        try
+        {
+            var medicineId = await batchRepository.GetMedicineIdByBatchId(batchId);
+            return Ok(medicineId);
+        }
+        catch (KeyNotFoundException)
+        {
+            return NotFound("Batch not found");
+        }
+    }
+
+
+
+    [HttpGet]
+    [Authorize]
+    [Route("locate-warehouse/{id:int}")]
+    [SwaggerOperation("Get warehouse where batch is located")]
+    public async Task<ActionResult> GetWarehouseLocation(int id)
+    {
+        return Ok(await batchRepository.GetWarehouseLocation(id));
+    }
 }

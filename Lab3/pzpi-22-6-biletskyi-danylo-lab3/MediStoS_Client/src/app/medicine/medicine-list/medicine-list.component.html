@@ -1,0 +1,17 @@
+<div class="container mt-4 mb-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Medicines</h2>
+    <button class="btn btn-primary" (click)="goToCreateMedicine()">
+      <i class="bi bi-plus-circle"></i> Add Medicine
+    </button>
+  </div>
+  
+  <div class="row row-cols-1 row-cols-lg-2 g-4">
+    <div class="col" *ngFor="let medicine of medicines">
+      <app-medicine-card [medicine]="medicine" (editMedicine)="editMedicine($event)"
+       (deleteMedicine)="deleteMedicine($event)"
+        (viewMedicine)="viewMedicine($event)"
+       ></app-medicine-card>
+    </div>
+  </div>
+</div>

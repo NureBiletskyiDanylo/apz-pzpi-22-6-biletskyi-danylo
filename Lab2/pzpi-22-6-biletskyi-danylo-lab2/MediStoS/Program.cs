@@ -23,7 +23,15 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddTransient<IEmailSender, EmailSender>();
 builder.Logging.AddConsole().AddDebug();
-// Add services to the container.
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});// Add services to the container.
 builder.Services.AddApplicationServices(builder.Configuration);
 builder.Services.AddDbContext<ApplicationDbContext>();
 
@@ -80,7 +88,7 @@ app.UseSwaggerUI();
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.UseCors("AllowAll");
 app.MapSwagger();
 app.MapControllers();
 
