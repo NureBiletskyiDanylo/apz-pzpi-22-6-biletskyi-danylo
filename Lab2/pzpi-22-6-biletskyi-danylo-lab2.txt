@@ -1,1 +1,329 @@
+Міністерство освіти і науки України
+Харківський національний  університет радіоелектроніки
+
+Кафедра програмної інженерії
+
+
+
+ЗВІТ
+з лабораторної роботи №2
+з дисципліни «Архітектура програмного забезпечення»
+
+
+Виконав:	Перевірив:
+ст. гр. ПЗПІ-22-6	ст. викл. каф. ПІ
+Білецький Д. А.	Сокорчук І.П.
+
+
+
+
+
+
+Харків 2025
+1 ІСТОРІЯ ЗМІН
+Таблиця 1 – Історія змін 
+№	Дата	Версія звіту	Опис змін та виправлень
+1	11.05.2025	0.1	Створено розділ «Історія змін»
+2	11.05.2025	0.1	Створено розділ «Завдання»
+3	11.05.2025	0.1	Створено розділ «Опис виконаної роботи»
+4	11.05.2025	0.1	Створено розділ «Висновки»
+5	11.05.2025	0.1	Доданий Додаток А
+6	11.05.2025	0.1	Доданий Додаток Б
+7	11.05.2025	0.1	Доданий Додаток В
+
+ 
+2 ЗАВДАННЯ
+1.	Розробити серверну / back-end частину програмної системи.
+2.	Проаналізуйте завдання (додаток В).
+3.	Виконайте контрольні завдання.
+4.	Відкрийте створений на попередній лабораторній роботі репозиторій GitHub.
+5.	Створіть у репозиторії директорію Task2 та текстовий файл з описом інженерних рішень у цій частині проєкту.
+6.	Зафіксуйте кожну внесену зміну командою git commit з відповідним коментарем та фіксуйте цією командою усі наступні зміни у проєкті.
+7.	Створіть у директорії Task2 піддиректорію для програмного коду.
+8.	Створіть програмний код, завантажте його у створену піддиректорію, зафіксуйте внесені у репозиторії зміни. Виконайте функціональне тестування.
+9.	Завантажте створений відеозапис тестування YouTube канал для вашого облікового запису в домені @nure.ua
+10.	Створіть для завантаженого запису його хронологічний опис.
+11.	Оформіть звіт у форматі pdf та завантажте його на навчальну платформу https://dl.nure.ua/
+12.	У коментарях до завантаженого звіту вкажіть посилання на відеозапис тестування у вашому каналі YouTube. 
+3 ОПИС ВИКОНАНОЇ РОБОТИ
+Розроблювана програмна система має клієнт-серверну архітектуру. Серверна частина реалізована за допомогою фреймворку ASP.NET Core, мовою програмування C#.
+В серверній частині використовуються контролери (controllers), в котрих визначається послідовність кроків обробки запитів та шляхи для маршрутизації запитів від сторонніх клієнтів.
+Для взаємодії з базою даних використовуються патерни репозиторій та ін’єкція залежностей. Вони дозволяють відокремити доступ до бази даних та з простотою використовувати створені інтерфейси і їх реалізації для ініціації різних типів запитів до бази даних за допомогою фреймворку Entity Framework Core.
+На рисунку Б.1 у додатку Б наведена діаграма розгортання.
+На рисунках Б.2 – Б.5 у додатку Б наведені діаграми прецедентів.
+На рисунку Б.6 у додатку Б наведена ER-модель даних.
+На рисунку Б.7 у додатку Б наведена діаграма діяльності.
+
+Опис бази даних програмної системи наведений в таблицях 1-6.
+ 
+Таблиця 1 – Таблиця «batch»
+id	integer
+batch_number	text
+quantity	integer
+manufacture_date	timestamp
+expiration_date	timestamp
+warehouse_id	integer
+user_id	integer
+medicine_id	integer
+
+Таблиця 2 – Таблиця «medicines»
+id	integer
+name	text
+manufacturer	text
+description	text
+max_temperature	real
+min_temperature	real
+max_humidity	real
+min_humidity	real
+
+Таблиця 3 – Таблиця «sensors»
+id	integer
+type	integer
+serial_number	text
+value	real
+warehouse_id	integer, FOREIGN KEY
+
+Таблиця 4 – Таблиця «storage_violations»
+id	integer
+temperature	real
+humidity	real
+recorded_at	timestamp
+warehouse_id	integer, FOREIGN KEY
+
+Таблиця 5 – Таблиця «users»
+id	integer
+first_name	text
+last_name	text
+email	text
+password_hash	bytea
+password_salt	bytea
+role	integer
+
+Таблиця 6 – Таблиця «warehouses»
+id	integer
+name	text
+address	text
+max_temperature	real
+min_temperature	real
+max_humidity	real
+min_humidity	real
+created_at	timestamp
+Таблиця 7 – Специфікація АРІ
+POST	/auth/login	Авторизація користувачів
+POST	/auth/register	Реєстрація користувачів
+GET	/batch/{id}	Запит інформації поставки
+DELETE	/batch/{id}	Видалення поставки
+POST	/batch	Створення поставки
+PUT	/batch/edit	Редагування поставки
+GET	/batch/{medicineId}/batches	Запит інформації про всі поставки певного медикаменту
+POST	/database/backup	Резервне копіювання бази даних
+POST	/database/restore	Відновлення бази даних
+GET	/medicine/{id}	Запит інформації про препарат
+DELETE	/medicine/{id}	Видалення препарату
+POST	/medicine	Створення препарату
+GET	/medicine	Запит інформації про всі препарати
+PUT	/medicine/edit	Редагування препарату
+GET	/sensor/{id}	Запит інформації про сенсор
+DELETE	/sensor/{id}	Видалення сенсора
+PUT	/sensor/{id}	Редагування сенсора
+POST	/sensor	Створення сенсора
+PATCH	/sensor/updatemeasureddata	Оновлення сенсора ІоТ клієнтом
+GET	/sensor/{warehouseId}/sensors	Запит інформації про сенсори на певному складі
+GET	/sensor/{warehouseId}/getsensorsforiot	Запит інформації про сенсори від ІоТ клієнта на певному складі
+GET	/storageviolation/{id}	Запит інформації про порушення умов зберігання
+DELETE	/storageviolation/{id}	Видалення порушення умов зберігання
+POST	/storageviolation	Створення порушення умов зберігання
+GET	/storageviolation/{warehouseId}/violations	Запит інформації про всі порушення умов зберігання на складі
+GET	/user/{id}	Запит інформації про користувача
+DELETE	/user/{id}	Видалення користувача
+PUT	/user/edit	Редагування користувача
+GET	/user/users	Запит інформації про всіх користувачів
+POST	/user/update-role/{id}	Редагування ролі користувача
+GET	/warehouse/{id}	Запит інформації складу
+DELETE	/warehouse{id}	Видалення складу
+POST	/warehouse	Створення складу
+GET	/warehouse	Запит інформації про всі склади
+PUT	/warehouse/edit	Редагування складу
+
+ 
+4 ВИСНОВКИ
+Під час виконання лабораторної роботи було розроблено серверну частину програмної системи.
+ 
+ДОДАТОК А
+Відеозапис та хронологічний опис
+
+Відеозапис доповіді на YouTube: https://youtu.be/YysOXfalhZI
+
+Хронологічний опис відеозапису:
+0:00 - Вступ
+0:14 - Схема бази даних
+0:34 - Тестування створення облікового запису
+0:42 - Тестування входу до акаунту
+1:09 - Тестування запитів на взаємодію з інформацією про препарати
+2:48 - Тестування запитів на взаємодію з інформацією про поставки препаратів
+4:23 - Тестування запитів на взаємодію з інформацією про сенсори
+5:55 - Тестування адміністративних функцій на взаємодію з обліковим записом користувача
+6:52 - Тестування адміністративної функції зміни ролі користувача
+7:28 - Тестування запитів на взаємодію з інформацією про складські приміщення
+
+Посилання на Github: https://github.com/NureBiletskyiDanylo/apz-pzpi-22-6-biletskyi-danylo/tree/main/Lab2
+ 
+ДОДАТОК Б
+Графічні матеріали
+Рисунок Б.1 – UML діаграма розгортання
+ 
+Рисунок Б.2 – UML діаграма прецедентів взаємодії робітника складу з системою
+ 
+Рисунок Б.3 – UML діаграма прецедентів взаємодії менеджера складу з системою
+ 
+Рисунок Б.4 – UML діаграма прецедентів взаємодії адміністратора з системою
+ 
+Рисунок Б.5 – UML діаграма прецедентів взаємодії адміністратора бази даних з системою
+ 
+Рисунок Б.6 – ER діаграма даних
+
+ 
+Рисунок Б.7 – Діаграма діяльності
+ДОДАТОК В
+Програмний код
+
+В.1 Математичне обчислення відносної вологості
+GitHub репозиторій: https://github.com/NureBiletskyiDanylo/apz-pzpi-22-6-biletskyi-danylo/blob/main/Lab2/pzpi-22-6-biletskyi-danylo-lab2/MediStoS/Services/RelativeHumidityCalculationService.cs
+1. public class RelativeHumidityCalculationService
+2. {
+3.     const double empiricalCoefficientOfTempIncrease = 17.67;
+4.     const double differenceBetweenKelvinAndCelsius = 243.5;
+5.     const double saturationAt0Degrees = 6.112;
+6.     public float CalculateRelativeHumidity(double temperature, double absoluteHumidity)
+7.     {
+8.         double saturationVaporPressure = saturationAt0Degrees * 
+9.             Math.Exp((empiricalCoefficientOfTempIncrease * temperature) 
+10.             / (temperature + differenceBetweenKelvinAndCelsius));
+11.         double dewPoint = CalculateDewPoint(absoluteHumidity);
+12.         double actualVaporPressure = saturationAt0Degrees * 
+13.             Math.Exp((empiricalCoefficientOfTempIncrease * dewPoint) 
+14.             / (dewPoint + differenceBetweenKelvinAndCelsius));
+15.         return (float)((actualVaporPressure / saturationVaporPressure) * 100);
+16.     }
+17.     private double CalculateDewPoint(double absoluteHumidity)
+18.     {
+19. 
+20.         double gamma = Math.Log((absoluteHumidity / saturationAt0Degrees) + 1);
+21.         double dewPoint = (differenceBetweenKelvinAndCelsius * gamma) 
+22.             / (empiricalCoefficientOfTempIncrease - gamma);
+23.         return dewPoint;
+24.     }
+25. }
+
+В.2 Адміністрування користувацьких записів системи
+GitHub репозиторій: https://github.com/NureBiletskyiDanylo/apz-pzpi-22-6-biletskyi-danylo/blob/main/Lab2/pzpi-22-6-biletskyi-danylo-lab2/MediStoS/Controllers/UserController.cs
+1. using MediStoS.Database.Models;
+2. using MediStoS.Database.Repository.UserRepository;
+3. using MediStoS.DataTransferObjects;
+4. using MediStoS.Enums;
+5. using Microsoft.AspNetCore.Authorization;
+6. using Microsoft.AspNetCore.Mvc;
+7. 
+8. [Route("api/[controller]")]
+9. [ApiController]
+10. public class UserController(IUserRepository userRepository) : ControllerBase
+11. {
+12.     [HttpGet]
+13.     [Route("{id:int}")]
+14.     [Authorize]
+15.     public async Task<IActionResult> GetUser(int id)
+16.     {
+17.         UserDto? user = await userRepository.GetUserAsync(id);
+18.         if (user == null) return NotFound($"User with specified id : {id} was not found");
+19. 
+20.         return Ok(user);
+21.     }
+22. 
+23.     [HttpDelete]
+24.     [Route("{id:int}")]
+25.     [Authorize(Roles = "Admin,DBAdmin")]
+26.     public async Task<IActionResult> DeleteUser(int id)
+27.     {
+28.         bool result = await userRepository.DeleteUserByIdAsync(id);
+29.         if (!result) return BadRequest("User was not deleted");
+30.         return Ok();
+31.     }
+32. 
+33.     [HttpPut]
+34.     [Route("edit")]
+35.     [Authorize(Roles = "Admin,DBAdmin")]
+36.     public async Task<IActionResult> UpdateUser(UserDto model)
+37.     {
+38.         if (model == null)
+39.         {
+40.             return BadRequest("Update user model was corrupted");
+41.         }
+42. 
+43.         bool result = await userRepository.UpdateUserAsync(model);
+44.         if (!result) return BadRequest("User was not updated");
+45.         return Ok(model);
+46.     }
+47. 
+48.     [HttpGet]
+49.     [Route("users")]
+50.     [Authorize(Roles = "Admin,DBAdmin")]
+51.     public async Task<IActionResult> GetUsers()
+52.     {
+53.         List<UserDto> users = await userRepository.GetUsersAsync();
+54.         return Ok(users);
+55.     }
+56. 
+57.     [HttpPost]
+58.     [Route("update-role/{id:int}")]
+59.     [Authorize(Roles = "Admin,DBAdmin")]
+60.     public async Task<ActionResult> UpdateUserRole(int id, [FromBody] string role)
+61.     {
+62.         Roles roleValue = Enum.Parse<Roles>(role);
+63. 
+64.         bool success = await userRepository.UpdateUserRoleAsync(id, roleValue);
+65.         if (success) return Ok();
+66.         return BadRequest("User role was not updated due to internal error");
+67.     }
+68. }
+69.
+
+В.3 Резервне копіювання бази даних
+GitHub репозиторій: https://github.com/NureBiletskyiDanylo/apz-pzpi-22-6-biletskyi-danylo/blob/main/Lab2/pzpi-22-6-biletskyi-danylo-lab2/MediStoS/Database/Backup/backup.ps1
+1. $pgDumpPath = "C:\Program Files\PostgreSQL\17\bin\pg_dump.exe"
+2. $pgHost = "127.0.0.1" 
+3. $port = "5432"
+4. $user = "postgres"
+5. $password = "IronSword12"
+6. $database = "medistosdb"
+7. $timestamp = Get-Date -Format "yyyyMMdd_HHmmss"
+8. $outputPath = "C:\Study\University\APZ\apz-pzpi-22-6-biletskyi-danylo\Lab2\pzpi-22-6-biletskyi-danylo-lab2\MediStoS\Database\Backup\backup_$timestamp.sql"
+9. 
+10. $outputDir = Split-Path $outputPath
+11. if (!(Test-Path -Path $outputDir)) {
+12.     New-Item -Path $outputDir -ItemType Directory | Out-Null
+13. }
+14. 
+15. $env:PGPASSWORD = $password
+16. 
+17. $arguments = @(
+18.     "--host=$pgHost"
+19.     "--username=$user"
+20.     "--format=plain"
+21.     "--clean"
+22.     "--file=`"$outputPath`""
+23.     "$database"
+24. )
+25. 
+26. Write-Host "Starting backup..."
+27. $process = Start-Process -FilePath $pgDumpPath -ArgumentList $arguments -NoNewWindow -Wait -PassThru -RedirectStandardOutput stdout.txt -RedirectStandardError stderr.txt
+28. 
+29. Remove-Item Env:PGPASSWORD
+30. 
+31. if ($process.ExitCode -eq 0) {
+32.     Write-Host "Backup successful. Saved to: $outputPath"
+33.     exit 0
+34. } else {
+35.     Write-Host "Backup failed. See stderr.txt"
+36.     exit 1
+37. }
 
