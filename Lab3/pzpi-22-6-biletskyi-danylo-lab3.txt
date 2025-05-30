@@ -1,1 +1,456 @@
+Міністерство освіти і науки України
+Харківський національний  університет радіоелектроніки
 
+Кафедра програмної інженерії
+
+
+
+ЗВІТ
+з лабораторної роботи №3
+з дисципліни «Архітектура програмного забезпечення»
+
+
+Виконав:	Перевірив:
+ст. гр. ПЗПІ-22-6	ст. викл. каф. ПІ
+Білецький Д. А.	Сокорчук І.П.
+
+
+
+
+
+
+Харків 2025
+1 ІСТОРІЯ ЗМІН
+Таблиця 1 – Історія змін 
+№	Дата	Версія звіту	Опис змін та виправлень
+1	29.05.2025	0.1	Створено розділ «Історія змін»
+2	29.05.2025	0.1	Створено розділ «Завдання»
+3	29.05.2025	0.1	Створено розділ «Опис виконаної роботи»
+4	29.05.2025	0.1	Створено розділ «Висновки»
+5	29.05.2025	0.1	Доданий Додаток А
+6	29.05.2025	0.1	Доданий Додаток Б
+7	29.05.2025	0.1	Доданий Додаток В
+
+ 
+2 ЗАВДАННЯ
+1.	Розробити клієнтську / front-end частину програмної системи.
+2.	Проаналізуйте завдання.
+3.	Виконайте контрольні завдання.
+4.	Відкрийте створений на попередній лабораторній роботі репозиторій GitHub.
+5.	Створіть у репозиторії директорію Task3 та текстовий файл з описом інженерних рішень у цій частині проєкту.
+6.	Зафіксуйте кожну внесену зміну командою git commit з відповідним коментарем та фіксуйте цією командою усі наступні зміни у проєкті.
+7.	Створіть у директорії Task3 піддиректорію для програмного коду.
+8.	Створіть програмний код, завантажте його у створену піддиректорію, зафіксуйте внесені у репозиторії зміни. Виконайте функціональне тестування.
+9.	Завантажте створений відеозапис тестування YouTube канал для вашого облікового запису в домені @nure.ua
+10.	Створіть для завантаженого запису його хронологічний опис.
+11.	Оформіть звіт у форматі pdf та завантажте його на навчальну платформу https://dl.nure.ua/
+12.	У коментарях до завантаженого звіту вкажіть посилання на відеозапис тестування у вашому каналі YouTube. 
+3 ОПИС ВИКОНАНОЇ РОБОТИ
+Клієнтська частина програмної системи була розроблена за допомогою мови програмування TypeScript та з використанням фреймворку Angular. Для проектування дизайну були використані такі бібліотеки як ngx-bootstrap, ngx-toastr, ngx-fontawesome та інші. Управління станом веб-додатку виконується за допомогою сервісів, RxJS (Reactive State Management) тощо. Маршрутизація між сторінками виконується на основі URL реалізована за допомогою вбудованого модуля RouterModule. Вебзастосунок отримує дані з сервера, включаючи інформацію отриману з бази даних, інформацію про сенсори, а також інші системні дані. Система автентифікації та авторизації побудована за допомогою JWT-токенів, які надходять та перевіряються на сервері.
+На рисунку Б.1 у додатку Б наведена діаграма пакетів.
+На рисунках Б.2 – Б.5 у додатку Б наведена діаграма прецедентів.
+На рисунку Б.6 у додатку Б наведена діаграма компонент.
+На рисунку Б.7 у додатку Б наведена діаграма діяльності.
+
+ 
+4 ВИСНОВКИ
+Під час виконання лабораторної роботи було розроблено клієнтську частину програмної системи.
+ 
+ДОДАТОК А
+Відеозапис та хронологічний опис
+
+Відеозапис доповіді на YouTube: https://youtu.be/qm6ttewIghw
+Хронологічний опис відеозапису:
+0:00 - Вступ
+0:16 - Реєстрація
+1:12 - Вхід до акаунту
+1:27 - Інтерфейс списку складських приміщень
+1:36 - Створення нового складського приміщення
+2:36 - Редагування складського приміщення
+3:17 - Інтерфейс сторінки певного складського приміщення
+3:23 - Інтерфейс поставок зареєстрованих у складському приміщенні
+3:32 - Реєстрація нової поставки
+4:07 - Інтерфейс зареєстрованих у складському приміщенні сенсорів
+4:19 - Створення нового сенсору
+4:41 - Інтерфейс зареєстрованих порушень умов зберігання медикаментів
+5:28 - Інтерфейс сторінки певного препарату
+6:23 - Створення нового препарату
+6:56 - Редагування даних про препарат
+7:21 - Реалізація адміністративних функцій з взаємодії з користувачами
+8:39 - Реалізація адміністративних функцій адміністратора бази даних
+
+Посилання на Github: https://github.com/NureBiletskyiDanylo/apz-pzpi-22-6-biletskyi-danylo/tree/main/Lab3
+ 
+ДОДАТОК Б
+ Графічні матеріали
+Рисунок Б.1 – UML діаграма пакетів
+ 
+Рисунок Б.2 – UML діаграма прецедентів взаємодії робітника складу з клієнтом
+ 
+Рисунок Б.3 – UML діаграма прецедентів взаємодії менеджера складу з клієнтом
+ 
+Рисунок Б.4 – UML діаграма прецедентів взаємодії адміністратора з клієнтом
+ 
+Рисунок Б.5 – UML діаграма прецедентів взаємодії адміністратора бази даних з клієнтом
+ 
+Рисунок Б.6 – діаграма компонент
+
+ 
+Рисунок Б.7 – Діаграма діяльності
+ 
+ДОДАТОК В
+Програмний код
+
+В.1 Бізнес логіка роботи сенсорів у веб-клієнті
+GitHub репозиторій: https://github.com/NureBiletskyiDanylo/apz-pzpi-22-6-biletskyi-danylo/blob/main/Lab3/pzpi-22-6-biletskyi-danylo-lab3/MediStoS_Client/src/app/warehouse/warehouse-sensor-list/warehouse-sensor-list.component.ts
+1. import { CommonModule } from '@angular/common';
+2. import { Component, inject, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+3. import { Router } from '@angular/router';
+4. import { ToastrService } from 'ngx-toastr';
+5. import { SensorModel } from '../../_models/sensorModel';
+6. import { SensorService } from '../../_services/sensor.service';
+7. import { trigger, state, style, transition, animate } from '@angular/animations';
+8. import { timer, switchMap, Subscription } from 'rxjs';
+9. 
+10. @Component({
+11.   selector: 'app-warehouse-sensor-list',
+12.   standalone: true,
+13.   imports: [CommonModule],
+14.   templateUrl: './warehouse-sensor-list.component.html',
+15.   styleUrl: './warehouse-sensor-list.component.css',
+16.   animations: [
+17.     trigger('expandCollapse', [
+18.       state('collapsed', style({
+19.         height: '0',
+20.         opacity: '0',
+21.         overflow: 'hidden'
+22.       })),
+23.       state('expanded', style({
+24.         height: '*',
+25.         opacity: '1'
+26.       })),
+27.       transition('collapsed <=> expanded', [
+28.         animate('300ms ease-in-out')
+29.       ])
+30.     ]),
+31.     trigger('valueUpdate', [
+32.       transition('* <=> *', [
+33.         style({ transform: 'scale(1.1)' }),
+34.         animate('500ms ease-out', style({ transform: 'scale(1)' }))
+35.       ])
+36.     ])
+37.   ]
+38. })
+39. export class WarehouseSensorListComponent implements OnInit, OnChanges, OnDestroy {
+40.   @Input() warehouseId!: number;
+41.   sensors: SensorModel[] = [];
+42.   sensorCount: number | null = null;
+43.   isExpanded = false;
+44.   isLoading = false;
+45.   isCountLoading = false;
+46.   router = inject(Router);
+47.   private toastr = inject(ToastrService);
+48.   private sensorService = inject(SensorService);
+49.   private refreshSubscription?: Subscription;
+50. 
+51.   private temperatureThresholds = {
+52.     criticalHigh: 30,
+53.     warningHigh: 25,
+54.     warningLow: 5,
+55.     criticalLow: 0
+56.   };
+57. 
+58.   private humidityThresholds = {
+59.     criticalHigh: 85,
+60.     warningHigh: 75,
+61.     warningLow: 25,
+62.     criticalLow: 15
+63.   };
+64. 
+65.   ngOnInit(): void {
+66.     this.loadSensorCount();
+67.     if (this.isExpanded) {
+68.       this.loadSensors();
+69.       this.startAutoRefresh();
+70.     }
+71.   }
+72. 
+73.   ngOnChanges(changes: SimpleChanges): void {
+74.     if (changes['warehouseId'] && changes['warehouseId'].currentValue) {
+75.       this.loadSensorCount();
+76.       if (this.isExpanded) {
+77.         this.loadSensors();
+78.         this.startAutoRefresh();
+79.       }
+80.     }
+81.   }
+82. 
+83.   ngOnDestroy(): void {
+84.     this.stopAutoRefresh();
+85.   }
+86. 
+87.   toggleList(): void {
+88.     this.isExpanded = !this.isExpanded;
+89.     if (this.isExpanded && this.sensors.length === 0) {
+90.       this.loadSensors();
+91.       this.startAutoRefresh();
+92.     } else if (!this.isExpanded) {
+93.       this.stopAutoRefresh();
+94.     }
+95.   }
+96. 
+97.   updateSensors(newSensors: SensorModel[]): void {
+98.     this.sensors = this.sensors.map(existingSensor => {
+99.       const updatedSensor = newSensors.find(s => s.id === existingSensor.id);
+100.       return updatedSensor || existingSensor;
+101.     });
+102.     
+103.     newSensors.forEach(newSensor => {
+104.       if (!this.sensors.some(s => s.id === newSensor.id)) {
+105.         this.sensors.push(newSensor);
+106.       }
+107.     });
+108.     
+109.     this.sensorCount = this.sensors.length;
+110.   }
+111. 
+112.   startAutoRefresh(): void {
+113.     this.stopAutoRefresh();
+114.     
+115.     const refreshInterval = 5000 + Math.random() * 5000;
+116.     
+117.     this.refreshSubscription = timer(0, refreshInterval)
+118.       .pipe(
+119.         switchMap(() => this.sensorService.getSensors(this.warehouseId))
+120.       )
+121.       .subscribe({
+122.         next: (sensors) => {
+123.           if (this.isExpanded) {
+124.             this.updateSensors(sensors);
+125.           }
+126.         },
+127.         error: (err) => {
+128.           console.error('Error refreshing sensors:', err);
+129.         }
+130.       });
+131.   }
+132. 
+133.   stopAutoRefresh(): void {
+134.     if (this.refreshSubscription) {
+135.       this.refreshSubscription.unsubscribe();
+136.       this.refreshSubscription = undefined;
+137.     }
+138.   }
+139. 
+140.   loadSensorCount(): void {
+141.     if (!this.warehouseId) return;
+142.     
+143.     this.isCountLoading = true;
+144.     this.sensorService.getSensorsCountForWarehouse(this.warehouseId).subscribe({
+145.       next: (count) => {
+146.         this.sensorCount = count;
+147.         this.isCountLoading = false;
+148.       },
+149.       error: () => {
+150.         this.isCountLoading = false;
+151.       }
+152.     });
+153.   }
+154. 
+155. 
+156. 
+157.   loadSensors(): void {
+158.     if (!this.warehouseId) return;
+159.     
+160.     this.isLoading = true;
+161.     this.sensorService.getSensors(this.warehouseId).subscribe({
+162.       next: (sensors) => {
+163.         this.sensors = sensors;
+164.         this.sensorCount = sensors.length;
+165.         this.isLoading = false;
+166.       },
+167.       error: () => {
+168.         this.isLoading = false;
+169.       }
+170.     });
+171.   }
+172. 
+173.   isSensorCritical(sensor: SensorModel): boolean {
+174.     if (sensor.type === 'Temperature') {
+175.       return sensor.value >= this.temperatureThresholds.criticalHigh || 
+176.              sensor.value <= this.temperatureThresholds.criticalLow;
+177.     } else { // Humidity
+178.       return sensor.value >= this.humidityThresholds.criticalHigh || 
+179.              sensor.value <= this.humidityThresholds.criticalLow;
+180.     }
+181.   }
+182. 
+183.   isSensorWarning(sensor: SensorModel): boolean {
+184.     if (this.isSensorCritical(sensor)) return false;
+185.     
+186.     if (sensor.type === 'Temperature') {
+187.       return sensor.value >= this.temperatureThresholds.warningHigh || 
+188.              sensor.value <= this.temperatureThresholds.warningLow;
+189.     } else { // Humidity
+190.       return sensor.value >= this.humidityThresholds.warningHigh || 
+191.              sensor.value <= this.humidityThresholds.warningLow;
+192.     }
+193.   }
+194. 
+195.   getSensorStatus(sensor: SensorModel): string {
+196.     if (this.isSensorCritical(sensor)) {
+197.       return 'Critical';
+198.     } else if (this.isSensorWarning(sensor)) {
+199.       return 'Warning';
+200.     } else {
+201.       return 'Normal';
+202.     }
+203.   }
+204. 
+205. 
+206.   deleteSensor(sensor: SensorModel): void {
+207.     if (confirm(`Are you sure you want to delete sensor ${sensor.serial_number}?`)) {
+208.       this.sensorService.deleteSensor(sensor.id).subscribe({
+209.         next: () => {
+210.           this.toastr.success('Sensor deleted successfully');
+211.           this.sensors = this.sensors.filter(s => s.id !== sensor.id);
+212.           this.sensorCount = this.sensors.length;
+213.         },
+214.         error: () => {
+215.           this.toastr.error('Failed to delete sensor');
+216.         }
+217.       });
+218.     }
+219.   }
+220. }
+В.2 Реалізація логіки адміністрування клієнта
+GitHub репозиторій: https://github.com/NureBiletskyiDanylo/apz-pzpi-22-6-biletskyi-danylo/blob/main/Lab3/pzpi-22-6-biletskyi-danylo-lab3/MediStoS_Client/src/app/admin/admin-panel/admin-panel.component.ts
+1. import { CommonModule } from '@angular/common';
+2. import { Component, inject, OnInit } from '@angular/core';
+3. import { FormsModule } from '@angular/forms';
+4. import { ToastrService } from 'ngx-toastr';
+5. import { Member } from '../../_models/member';
+6. import { UserService } from '../../_services/user.service';
+7. import { AccountService } from '../../_services/account.service';
+8. import { DbService } from '../../_services/db.service';
+9. 
+10. @Component({
+11.   selector: 'app-admin-panel',
+12.   standalone: true,
+13.   imports: [CommonModule, FormsModule],
+14.   templateUrl: './admin-panel.component.html',
+15.   styleUrl: './admin-panel.component.css'
+16. })
+17. export class AdminPanelComponent implements OnInit {
+18.   private userService = inject(UserService);
+19.   accountService = inject(AccountService);
+20.   private toastr = inject(ToastrService);
+21.   private dbService = inject(DbService);
+22. 
+23.   members: Member[] = [];
+24.   isLoading = true;
+25.   roles = ['WarehouseWorker', 'Manager', 'Admin', 'DBAdmin'];
+26.   editedMember: Member | null = null;
+27. 
+28.   ngOnInit(): void {
+29.     this.loadMembers();
+30.   }
+31. 
+32. loadMembers(): void {
+33.   this.userService.getMembers().subscribe({
+34.     next: (members) => {
+35.       this.members = members.map(member => ({
+36.         ...member,
+37.         role: member.role || 'WarehouseWorker'
+38.       }));
+39.       console.log('Members loaded:', this.members);
+40.       this.isLoading = false;
+41.     },
+42.     error: () => {
+43.       this.toastr.error('Failed to load members');
+44.       this.isLoading = false;
+45.     }
+46.   });
+47. }
+48. 
+49.   startEdit(member: Member): void {
+50.     this.editedMember = { ...member };
+51.   }
+52. 
+53.   cancelEdit(): void {
+54.     this.editedMember = null;
+55.   }
+56. 
+57.   saveChanges(): void {
+58.     if (!this.editedMember) return;
+59. 
+60.     this.userService.updateUser(this.editedMember).subscribe({
+61.       next: () => {
+62.         console.log('Member updated:', this.editedMember);
+63.         this.toastr.success('Member updated successfully');
+64.         this.loadMembers();
+65.         this.editedMember = null;
+66.       },
+67.       error: () => {
+68.         this.toastr.error('Failed to update member');
+69.       }
+70.     });
+71.   }
+72. 
+73.   deleteMember(id: number): void {
+74.     if (confirm('Are you sure you want to delete this member?')) {
+75.       this.userService.deleteUser(id).subscribe({
+76.         next: () => {
+77.           this.toastr.success('Member deleted successfully');
+78.           this.loadMembers();
+79.         },
+80.         error: () => {
+81.           this.toastr.error('Failed to delete member');
+82.         }
+83.       });
+84.     }
+85.   }
+86. 
+87. onRoleChange(member: Member, event: Event): void {
+88.   const selectElement = event.target as HTMLSelectElement;
+89.   const newRole = selectElement.value;
+90.   console.log(`Changing role for member ${member.id} to ${newRole}`);
+91.   this.changeRole(member, newRole);
+92. }
+93. 
+94.   changeRole(member: Member, newRole: string): void {
+95.     console.log(member);
+96.     console.log(newRole);
+97.     if (member.role === newRole) return;
+98.     console.log(`Updating role for member ${member.id} to ${newRole}`);
+99.     this.userService.updateUserRole(member.id, newRole).subscribe({
+100.       next: () => {
+101.         this.toastr.success('Role updated successfully');
+102.         member.role = newRole;
+103.       },
+104.       error: () => {
+105.         this.toastr.error('Failed to update role');
+106.       }
+107.     });
+108.   }
+109. 
+110.   backup(){
+111.     this.dbService.backup().subscribe({
+112.       next: () => {
+113.         this.toastr.success('Database backup created successfully');
+114.       },
+115.       error: () => {
+116.         this.toastr.error('Failed to create database backup');
+117.       }});
+118.   }
+119. 
+120.   restore(){
+121.     this.dbService.restore().subscribe({
+122.       next: () => {
+123.         this.toastr.success('Database restore done successfully');
+124.       },
+125.       error: () => {
+126.         this.toastr.error('Failed to restore database');
+127.       }});
+128.   }
+129. }
