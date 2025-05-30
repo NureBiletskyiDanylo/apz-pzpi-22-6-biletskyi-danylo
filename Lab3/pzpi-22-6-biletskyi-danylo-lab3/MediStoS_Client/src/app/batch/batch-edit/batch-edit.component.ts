@@ -60,7 +60,6 @@ export class BatchEditComponent implements OnInit {
       expiration_date: [this.formatDateForInput(batch.expiration_date), [
         Validators.required
       ]],
-      // Display email but don't include in form controls
       email: [{ value: batch.email, disabled: true }]
     });
   }
@@ -79,7 +78,6 @@ export class BatchEditComponent implements OnInit {
     const updatedBatch: BatchModel = {
       ...this.originalBatch,
       ...this.batchForm.value,
-      // Ensure email remains unchanged
       email: this.originalBatch.email
     };
 

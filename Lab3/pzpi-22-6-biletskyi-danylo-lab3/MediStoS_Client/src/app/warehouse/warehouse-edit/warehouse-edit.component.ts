@@ -37,7 +37,6 @@ export class WarehouseEditComponent implements OnInit {
     if (warehouse) {
       this.warehouseForm.patchValue({
         ...warehouse,
-        // Ensure proper types for form controls
         min_temperature: +warehouse.min_temperature,
         max_temperature: +warehouse.max_temperature,
         min_humidity: +warehouse.min_humidity,
@@ -65,11 +64,9 @@ export class WarehouseEditComponent implements OnInit {
         .subscribe({
           next: () => {
             this.router.navigate(['/warehouses']);
-            // Optional: Add toast notification here
           },
           error: (error) => {
             console.error('Error updating warehouse:', error);
-            // Optional: Show error message
           }
         });
     }

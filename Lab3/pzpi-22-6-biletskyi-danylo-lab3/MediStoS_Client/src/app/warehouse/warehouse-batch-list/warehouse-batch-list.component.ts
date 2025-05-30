@@ -110,7 +110,6 @@ viewMedicine(batch: BatchModel): void {
     next: (response) => {
       this.isViewingMedicine = false;
       
-      // Handle different response types
       const medicineId = typeof response === 'object' 
         ? (response as any)?.medicineId || (response as any)?.id
         : response;

@@ -75,13 +75,11 @@ this.route.queryParams.subscribe(params => {
       medicine_id: ['', Validators.required]
     });
 
-    // Add this to your form initialization
 this.batchForm.setValidators([
   this.validateDateRange
 ]);
   }
 
-  // Add this method to your component
 validateDateRange(control: import('@angular/forms').AbstractControl): ValidationErrors | null {
   const group = control as FormGroup;
   const manufactureDate = new Date(group.get('manufacture_date')?.value);
@@ -139,13 +137,12 @@ onSubmit(): void {
     next: () => {
       this.toastr.success('Batch created successfully');
 
-      // Navigate based on origin
       if (this.medicineIdFromQuery) {
-        this.router.navigate(['/medicine/view', this.medicineIdFromQuery]); // adjust route if needed
+        this.router.navigate(['/medicine/view', this.medicineIdFromQuery]);
       } else if (this.warehouseIdFromQuery) {
-        this.router.navigate(['/warehouse/view', this.warehouseIdFromQuery]); // adjust route if needed
+        this.router.navigate(['/warehouse/view', this.warehouseIdFromQuery]);
       } else {
-        this.router.navigate(['/']); // fallback/default route
+        this.router.navigate(['/']);
       }
     },
     error: () => {

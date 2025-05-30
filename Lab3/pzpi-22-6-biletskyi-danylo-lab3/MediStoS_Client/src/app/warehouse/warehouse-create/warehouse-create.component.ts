@@ -19,7 +19,6 @@ export class WarehouseCreateComponent {
   router = inject(Router);
   private toastService = inject(ToastrService);
 
-  // Form definition with validation
   form = this.fb.group({
     name: ['', [Validators.required, Validators.maxLength(100)]],
     address: ['', [Validators.required, Validators.maxLength(200)]],
@@ -29,7 +28,6 @@ export class WarehouseCreateComponent {
     maxHumidity: [null, [Validators.required, Validators.min(0), Validators.max(100)]]
   });
 
-  // Convenience getters for form controls
   get f() { return this.form.controls; }
 
   onSubmit() {

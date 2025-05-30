@@ -47,14 +47,13 @@ export class WarehouseViewComponent implements OnInit {
   formatDate(date: Date): string {
     return new Date(date).toLocaleDateString();
   }
-// Add these methods to your component class
 calculateRangePercentage(current: number, min: number, max: number): number {
   return ((current - min) / (max - min)) * 100;
 }
 
 getTemperatureStyle(warehouse: WarehouseModel): any {
-  const min = -20; // Absolute minimum you expect (adjust as needed)
-  const max = 50;  // Absolute maximum you expect (adjust as needed)
+  const min = -50;
+  const max = 50;
   const range = max - min;
   
   return {

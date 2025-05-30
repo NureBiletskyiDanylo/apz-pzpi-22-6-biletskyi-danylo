@@ -95,7 +95,6 @@ export class WarehouseSensorListComponent implements OnInit, OnChanges, OnDestro
   }
 
   updateSensors(newSensors: SensorModel[]): void {
-    // Update existing sensors with new values
     this.sensors = this.sensors.map(existingSensor => {
       const updatedSensor = newSensors.find(s => s.id === existingSensor.id);
       return updatedSensor || existingSensor;

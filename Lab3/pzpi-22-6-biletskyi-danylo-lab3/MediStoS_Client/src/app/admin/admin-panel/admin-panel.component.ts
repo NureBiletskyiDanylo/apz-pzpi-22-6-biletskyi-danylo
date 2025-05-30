@@ -32,10 +32,9 @@ export class AdminPanelComponent implements OnInit {
 loadMembers(): void {
   this.userService.getMembers().subscribe({
     next: (members) => {
-      // Ensure roles are properly mapped
       this.members = members.map(member => ({
         ...member,
-        role: member.role || 'WarehouseWorker' // Default if role is missing
+        role: member.role || 'WarehouseWorker'
       }));
       console.log('Members loaded:', this.members);
       this.isLoading = false;
@@ -48,8 +47,6 @@ loadMembers(): void {
 }
 
   startEdit(member: Member): void {
-    // This would navigate to a separate user-edit component in a real app
-    // For now, we'll keep the inline edit but only for non-role fields
     this.editedMember = { ...member };
   }
 
@@ -102,7 +99,6 @@ onRoleChange(member: Member, event: Event): void {
     this.userService.updateUserRole(member.id, newRole).subscribe({
       next: () => {
         this.toastr.success('Role updated successfully');
-        // Update local state to avoid full reload if desired
         member.role = newRole;
       },
       error: () => {
