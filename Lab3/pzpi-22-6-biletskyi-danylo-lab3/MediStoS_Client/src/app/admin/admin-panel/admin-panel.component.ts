@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Member } from '../../_models/member';
 import { UserService } from '../../_services/user.service';
+import { AccountService } from '../../_services/account.service';
+import { DbService } from '../../_services/db.service';
 
 @Component({
   selector: 'app-admin-panel',
@@ -14,7 +16,9 @@ import { UserService } from '../../_services/user.service';
 })
 export class AdminPanelComponent implements OnInit {
   private userService = inject(UserService);
+  accountService = inject(AccountService);
   private toastr = inject(ToastrService);
+  private dbService = inject(DbService);
 
   members: Member[] = [];
   isLoading = true;
@@ -105,5 +109,25 @@ onRoleChange(member: Member, event: Event): void {
         this.toastr.error('Failed to update role');
       }
     });
+  }
+
+  backup(){
+    this.dbService.backup().subscribe({
+      next: () => {
+        this.toastr.success('Database backup created successfully');
+      },
+      error: () => {
+        this.toastr.error('Failed to create database backup');
+      }});
+  }
+
+  restore(){
+    this.dbService.restore().subscribe({
+      next: () => {
+        this.toastr.success('Database restore done successfully');
+      },
+      error: () => {
+        this.toastr.error('Failed to restore database');
+      }});
   }
 }

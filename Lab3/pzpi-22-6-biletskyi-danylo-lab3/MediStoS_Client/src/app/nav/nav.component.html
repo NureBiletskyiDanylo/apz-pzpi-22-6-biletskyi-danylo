@@ -5,21 +5,15 @@
 
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
                 <li class="nav-item">
-                    <a routerLink="/books" class="nav-link">Books</a>
+                    <a routerLink="/medicine" class="nav-link">Medicine</a>
                 </li>
                 <li class="nav-item">
-                    <a routerLink="/authors" class="nav-link">Authors</a>
+                    <a routerLink="/warehouse" class="nav-link">Warehouse</a>
                 </li>
             @if (accountService.currentUser()){
                 <li class="nav-item">
-                    <a routerLink="/favourites" class="nav-link">Favourites</a>
+                    <a routerLink="/admin/admin-panel" class="nav-link">Admin</a>
                 </li>
-                @if (accountService.currentUser()?.role?.toLowerCase()
-                === "admin"){
-                <li class="nav-item">
-                    <a routerLink="/admin" class="nav-link">Admin</a>
-                </li>
-                }
             }
         </ul>
 

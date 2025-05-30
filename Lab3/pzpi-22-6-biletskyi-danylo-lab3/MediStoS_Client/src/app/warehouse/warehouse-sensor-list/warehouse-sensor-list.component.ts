@@ -204,10 +204,6 @@ export class WarehouseSensorListComponent implements OnInit, OnChanges, OnDestro
   }
 
 
-  editSensor(sensor: SensorModel): void {
-    this.router.navigate(['/sensor/edit', sensor.id]);
-  }
-
   deleteSensor(sensor: SensorModel): void {
     if (confirm(`Are you sure you want to delete sensor ${sensor.serial_number}?`)) {
       this.sensorService.deleteSensor(sensor.id).subscribe({

@@ -86,7 +86,7 @@ export class BatchEditComponent implements OnInit {
     this.batchService.updateBatch(updatedBatch).subscribe({
       next: () => {
         this.toastr.success('Batch updated successfully');
-        this.router.navigate(['/batches']);
+        this.router.navigate(['/']);
       },
       error: () => {
         this.isSubmitting = false;

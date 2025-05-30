@@ -13,6 +13,7 @@ import { BatchEditComponent } from './batch/batch-edit/batch-edit.component';
 import { BatchCreateComponent } from './batch/batch-create/batch-create.component';
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { SensorCreateComponent } from './sensor/sensor-create/sensor-create.component';
+import { ViolationListComponent } from './violation/violation-list/violation-list.component';
 
 export const routes: Routes = [
     {path: 'login', component: LoginComponent},
@@ -28,5 +29,5 @@ export const routes: Routes = [
     {path: 'batch/edit/:id', component: BatchEditComponent},
     {path: 'batch/create', component: BatchCreateComponent},
     {path: 'admin/admin-panel', component: AdminPanelComponent},
-    {path: 'sensor/create/:warehouseId', component: SensorCreateComponent}
+    {path: 'sensor/create/:warehouseId', component: SensorCreateComponent},
 ];

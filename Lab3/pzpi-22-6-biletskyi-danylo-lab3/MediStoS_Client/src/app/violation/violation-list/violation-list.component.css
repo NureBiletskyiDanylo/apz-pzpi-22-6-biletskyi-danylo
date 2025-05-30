@@ -1,0 +1,74 @@
+.violation-list-container {
+  border: 1px solid #dee2e6;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.toggle-button {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: #f8f9fa;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.2s;
+}
+
+.toggle-button:hover {
+  background-color: #e9ecef;
+}
+
+.violation-list {
+  background-color: #fff;
+}
+
+.loading-state,
+.empty-state {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.empty-state {
+  color: #6c757d;
+  font-style: italic;
+}
+
+.violation-item {
+  padding: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.violation-item:first-child {
+  border-top: none;
+}
+
+.violation-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.violation-time {
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+.violation-details {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.violation-metric {
+  display: flex;
+  align-items: center;
+}
+
+.metric-value {
+  font-weight: 600;
+  font-size: 1.1rem;
+}

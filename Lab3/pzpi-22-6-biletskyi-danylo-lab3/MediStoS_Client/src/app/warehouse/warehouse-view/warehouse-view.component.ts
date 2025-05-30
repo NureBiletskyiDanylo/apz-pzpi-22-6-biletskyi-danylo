@@ -6,11 +6,12 @@ import { WarehouseService } from '../../_services/warehouse.service';
 import { CommonModule } from '@angular/common';
 import { WarehouseBatchListComponent } from '../warehouse-batch-list/warehouse-batch-list.component';
 import { WarehouseSensorListComponent } from "../warehouse-sensor-list/warehouse-sensor-list.component";
+import { ViolationListComponent } from '../../violation/violation-list/violation-list.component';
 
 @Component({
   selector: 'app-warehouse-view',
   standalone: true,
-  imports: [CommonModule, WarehouseBatchListComponent, WarehouseSensorListComponent],
+  imports: [CommonModule, WarehouseBatchListComponent, WarehouseSensorListComponent, ViolationListComponent],
   templateUrl: './warehouse-view.component.html',
   styleUrl: './warehouse-view.component.css'
 })

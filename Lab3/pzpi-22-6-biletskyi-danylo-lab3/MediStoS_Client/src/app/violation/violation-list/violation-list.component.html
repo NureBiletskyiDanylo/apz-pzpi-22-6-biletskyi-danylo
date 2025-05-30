@@ -1,0 +1,46 @@
+<div class="violation-list-container">
+  <!-- Toggle Button -->
+  <button class="toggle-button" (click)="toggleList()">
+    <span>
+      <i class="bi" [class.bi-chevron-down]="!isExpanded" [class.bi-chevron-up]="isExpanded"></i>
+      {{ isExpanded ? 'Hide Violations' : 'Show Violations' }}
+    </span>
+  </button>
+
+  <!-- Violation List -->
+  <div class="violation-list" [@expandCollapse]="isExpanded ? 'expanded' : 'collapsed'">
+    <!-- Loading State -->
+    <div *ngIf="isLoading" class="loading-state">
+      <div class="spinner-border spinner-border-sm" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <span class="ms-2">Loading violations...</span>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="!isLoading && violations.length === 0" class="empty-state">
+      No storage violations found for this warehouse
+    </div>
+
+    <!-- Violation Items -->
+    <div *ngFor="let violation of violations" class="violation-item">
+      <div class="violation-header">
+        <span class="violation-time">
+          <i class="bi bi-clock me-1"></i>
+          {{ formatDateTime(violation.recorded_at) }}
+        </span>
+      </div>
+      
+      <div class="violation-details">
+        <div class="violation-metric">
+          <i class="bi bi-thermometer-high text-danger me-2"></i>
+          <span class="metric-value text-danger">{{ violation.temperature }}°C</span>
+        </div>
+        <div class="violation-metric">
+          <i class="bi bi-droplet text-info me-2"></i>
+          <span class="metric-value text-info">{{ violation.humidity }}%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
