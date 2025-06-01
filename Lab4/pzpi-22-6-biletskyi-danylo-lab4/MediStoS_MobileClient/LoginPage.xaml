@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MediStoS_MobileClient.LoginPage"
+             Title="LoginPage">
+    <VerticalStackLayout 
+            Spacing="25" 
+            Padding="30,0"
+            VerticalOptions="Center">
+        <Label 
+                Text="Log in to continue"
+                FontSize="18"
+                HorizontalOptions="Center"/>
+
+        <!-- Email Entry -->
+        <VerticalStackLayout>
+            <Label Text="Email"/>
+            <Entry 
+                    Placeholder="Enter your email"
+                    Keyboard="Email"
+                    Text="{Binding Email}"/>
+        </VerticalStackLayout>
+
+        <!-- Password Entry -->
+        <VerticalStackLayout>
+            <Label Text="Password"/>
+            <Entry 
+                    Placeholder="Enter your password"
+                    IsPassword="True"
+                    Text="{Binding Password}"/>
+        </VerticalStackLayout>
+        <!-- Login Button -->
+        <Button 
+                Text="Sign In"
+                Command="{Binding LoginCommand}"
+                HorizontalOptions="Fill"/>
+    </VerticalStackLayout>
+</ContentPage>

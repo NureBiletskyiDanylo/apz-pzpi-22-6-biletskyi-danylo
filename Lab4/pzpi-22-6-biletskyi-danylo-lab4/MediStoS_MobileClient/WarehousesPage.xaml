@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MediStoS_MobileClient.WarehousesPage"
+             Title="Warehouses">
+    <Grid RowDefinitions="Auto,*" RowSpacing="0">
+        <!-- Logout Button (Top Row) -->
+        <Button Text="Log out"
+                Clicked="OnLogoutClicked"
+                BackgroundColor="Red"
+                TextColor="White"
+                CornerRadius="10"
+                Margin="10"
+                Grid.Row="0"/>
+
+        <!-- RefreshView and Collection (Bottom Row - takes remaining space) -->
+        <RefreshView IsRefreshing="{Binding IsLoading}"
+                     Command="{Binding LoadWarehousesCommand}"
+                     Grid.Row="1">
+            <CollectionView ItemsSource="{Binding Warehouses}"
+                            SelectionMode="Single"
+                            SelectionChangedCommand="{Binding WarehouseSelectedCommand}"
+                            SelectionChangedCommandParameter="{Binding SelectedItem, Source={RelativeSource Self}}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="10"
+                               Margin="5"
+                               CornerRadius="10"
+                               BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}">
+                            <VerticalStackLayout Spacing="5">
+                                <Label Text="{Binding Name}"
+                                       FontSize="18"
+                                       FontAttributes="Bold"/>
+                                <Label Text="{Binding Address}"
+                                       FontSize="14"
+                                       TextColor="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray400}}"/>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+                <CollectionView.EmptyView>
+                    <StackLayout HorizontalOptions="Center"
+                                 VerticalOptions="Center"
+                                 Padding="20">
+                        <Label Text="No warehouses found"
+                               HorizontalOptions="Center"
+                               FontSize="16"/>
+                        <Button Text="Refresh"
+                                Command="{Binding LoadWarehousesCommand}"
+                                HorizontalOptions="Center"
+                                Margin="0,10,0,0"/>
+                    </StackLayout>
+                </CollectionView.EmptyView>
+            </CollectionView>
+        </RefreshView>
+    </Grid>
+</ContentPage>

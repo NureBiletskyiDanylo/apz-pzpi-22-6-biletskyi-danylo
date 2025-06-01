@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:MediStoS_MobileClient.Helpers"
+             x:Class="MediStoS_MobileClient.WarehouseDetailPage"
+             Title="WarehouseDetailPage">
+    <ContentPage.Resources>
+        <converters:ValueToColorConverter x:Key="ValueToColor"/>
+    </ContentPage.Resources>
+    <RefreshView IsRefreshing="{Binding IsLoading}"
+                 Command="{Binding LoadDataCommand}"
+                 CommandParameter="{Binding Warehouse.Id}">
+        <ScrollView>
+            <VerticalStackLayout Padding="20" Spacing="15">
+
+                <!-- Warehouse Details -->
+                <Frame CornerRadius="10" Padding="15"
+                       BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="{Binding Warehouse.Name}" 
+                               FontSize="24" FontAttributes="Bold"/>
+
+                        <Label Text="{Binding Warehouse.Address}" 
+                               FontSize="16"/>
+
+                        <BoxView HeightRequest="1" Margin="0,10,0,10"
+                                 Color="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray700}}"/>
+
+                        <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto">
+                            <Label Text="Min Temperature:" Grid.Column="0" Grid.Row="0"/>
+                            <Label Text="{Binding Warehouse.MinTemperature, StringFormat='{0}°C'}"
+                                   Grid.Column="1" Grid.Row="0"/>
+
+                            <Label Text="Max Temperature:" Grid.Column="0" Grid.Row="1"/>
+                            <Label Text="{Binding Warehouse.MaxTemperature, StringFormat='{0}°C'}"
+                                   Grid.Column="1" Grid.Row="1"/>
+
+                            <Label Text="Min Humidity:" Grid.Column="0" Grid.Row="2"/>
+                            <Label Text="{Binding Warehouse.MinHumidity, StringFormat='{0}%'}"
+                                   Grid.Column="1" Grid.Row="2"/>
+
+                            <Label Text="Max Humidity:" Grid.Column="0" Grid.Row="3"/>
+                            <Label Text="{Binding Warehouse.MaxHumidity, StringFormat='{0}%'}"
+                                   Grid.Column="1" Grid.Row="3"/>
+
+                            <Label Text="Created:" Grid.Column="0" Grid.Row="4"/>
+                            <Label Text="{Binding Warehouse.CreatedAt, StringFormat='{0:dd MMM yyyy}'}"
+                                   Grid.Column="1" Grid.Row="4"/>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Sensors Section -->
+                <Label Text="Sensors" FontSize="18" FontAttributes="Bold"/>
+
+                <CollectionView ItemsSource="{Binding Sensors}"
+                                SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Padding="10" Margin="0,0,0,5" CornerRadius="8"
+                                   BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}">
+                                <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto">
+                                    <Label Text="{Binding Type}" FontAttributes="Bold"
+                                           Grid.Column="0" Grid.Row="0"/>
+                                    <Label Text="{Binding SerialNumber}" 
+                                           Grid.Column="1" Grid.Row="0" HorizontalOptions="End"/>
+
+                                    <Label Text="Current Value:" 
+                                           Grid.Column="0" Grid.Row="1"/>
+                                    <Label Text="{Binding Value, StringFormat='{0:F2}'}" 
+                                           Grid.Column="1" Grid.Row="1" HorizontalOptions="End"
+                                           TextColor="{Binding ., Converter={StaticResource ValueToColor}, ConverterParameter={Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.Warehouse}}"/>
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+
+                    <CollectionView.EmptyView>
+                        <Label Text="No sensors found" HorizontalOptions="Center" Margin="0,20"/>
+                    </CollectionView.EmptyView>
+                </CollectionView>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </RefreshView>
+</ContentPage>
