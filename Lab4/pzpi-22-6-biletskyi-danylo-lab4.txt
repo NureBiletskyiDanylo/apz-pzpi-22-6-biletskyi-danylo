@@ -1,1 +1,185 @@
+Міністерство освіти і науки України
+Харківський національний  університет радіоелектроніки
 
+Кафедра програмної інженерії
+
+
+
+ЗВІТ
+з лабораторної роботи №4
+з дисципліни «Архітектура програмного забезпечення»
+
+
+Виконав:	Перевірив:
+ст. гр. ПЗПІ-22-6	ст. викл. каф. ПІ
+Білецький Д. А.	Сокорчук І.П.
+
+
+
+
+
+
+Харків 2025
+1 ІСТОРІЯ ЗМІН
+Таблиця 1 – Історія змін 
+№	Дата	Версія звіту	Опис змін та виправлень
+1	01.06.2025	0.1	Створено розділ «Історія змін»
+2	01.06.2025	0.1	Створено розділ «Завдання»
+3	01.06.2025	0.1	Створено розділ «Опис виконаної роботи»
+4	01.06.2025	0.1	Створено розділ «Висновки»
+5	01.06.2025	0.1	Доданий Додаток А
+6	01.06.2025	0.1	Доданий Додаток Б
+7	01.06.2025	0.1	Доданий Додаток В
+
+ 
+2 ЗАВДАННЯ
+1.	Необхідно розробити мобільний програмний застосунок для будь-якої поширеної на сьогодні мобільної платформи.
+2.	Проаналізуйте завдання.
+3.	Виконайте контрольні завдання.
+4.	Відкрийте створений на попередній лабораторній роботі репозиторій GitHub.
+5.	Створіть у репозиторії директорію Task4 та текстовий файл з описом інженерних рішень у цій частині проєкту.
+6.	Зафіксуйте кожну внесену зміну командою git commit з відповідним коментарем та фіксуйте цією командою усі наступні зміни у проєкті.
+7.	Створіть у директорії Task4 піддиректорію для програмного коду.
+8.	Створіть програмний код, завантажте його у створену піддиректорію, зафіксуйте внесені у репозиторії зміни. Виконайте функціональне тестування.
+9.	Завантажте створений відеозапис тестування YouTube канал для вашого облікового запису в домені @nure.ua
+10.	Створіть для завантаженого запису його хронологічний опис.
+11.	Оформіть звіт у форматі pdf та завантажте його на навчальну платформу https://dl.nure.ua/
+12.	У коментарях до завантаженого звіту вкажіть посилання на відеозапис тестування у вашому каналі YouTube. 
+3 ОПИС ВИКОНАНОЇ РОБОТИ
+Програмне забезпечення мобільний програмний застосунок для платформи Android розроблено на мові програмування С# за допомогою фреймворку .NET MAUI. Мобільний застосунок отримує інформацію про складські приміщення та сенсори в них з серверу. Автентифікація реалізована за допомогою JWT-токенів, які перевіряються на сервері при кожному запиті. 
+На рисунку Б.1 у додатку Б наведена діаграма пакетів.
+На рисунку Б.2 у додатку Б наведена діаграма прецедентів.
+На рисунку Б.3 у додатку Б наведена діаграма компонент.
+На рисунку Б.4 у додатку Б наведена діаграма діяльності.
+
+ 
+4 ВИСНОВКИ
+Під час виконання лабораторної роботи було розроблено мобільний застосунок для програмної системи.
+ 
+ДОДАТОК А
+Відеозапис та хронологічний опис
+
+Відеозапис доповіді на YouTube: https://youtu.be/FBDG3c6ieUA
+Хронологічний опис відеозапису:
+0:00 - Вступ
+0:38 - Авторизація (з невірними даними)
+1:04 - Успішна авторизація
+1:10 - Список складських приміщень
+1:34 - Сторінка деталей складського приміщення
+2:07 - Сенсори складського приміщення
+3:10 - Повторне оновлення даних сенсорів складського приміщення при роботі ІоТ клієнту
+
+Посилання на Github: https://github.com/NureBiletskyiDanylo/apz-pzpi-22-6-biletskyi-danylo/tree/main/Lab4
+ 
+ДОДАТОК Б
+ Графічні матеріали
+Рисунок Б.1 – UML діаграма пакетів
+ 
+Рисунок Б.2 – UML діаграма прецедентів взаємодії користувача з мобільним клієнтом
+ 
+Рисунок Б.3 – Діаграма компонент
+
+ 
+Рисунок Б.4 – Діаграма діяльності
+ 
+ДОДАТОК В
+Програмний код
+
+В.1 Бізнес логіка обробки даних сенсорів та складського приміщення у мобільному клієнті
+GitHub репозиторій: https://github.com/NureBiletskyiDanylo/apz-pzpi-22-6-biletskyi-danylo/blob/main/Lab4/pzpi-22-6-biletskyi-danylo-lab4/MediStoS_MobileClient/Models/WarehouseDetailViewModel.cs
+1. using System.ComponentModel;
+2. using System.Runtime.CompilerServices;
+3. using System.Windows.Input;
+4. using MediStoS_MobileClient.Services;
+5. using MediStoS_MobileClient.DataTransferModels;
+6. 
+7. namespace MediStoS_MobileClient.Models
+8. {
+9.     public class WarehouseDetailViewModel : INotifyPropertyChanged
+10.     {
+11.         private readonly WarehouseService _warehouseService;
+12.         private WarehouseDto _warehouse;
+13.         private List<SensorDto> _sensors;
+14.         private bool _isLoading;
+15. 
+16.         public WarehouseDto Warehouse
+17.         {
+18.             get => _warehouse;
+19.             set
+20.             {
+21.                 _warehouse = value;
+22.                 OnPropertyChanged();
+23.             }
+24.         }
+25. 
+26.         public List<SensorDto> Sensors
+27.         {
+28.             get => _sensors;
+29.             set
+30.             {
+31.                 _sensors = value;
+32.                 OnPropertyChanged();
+33.             }
+34.         }
+35. 
+36.         public bool IsLoading
+37.         {
+38.             get => _isLoading;
+39.             set
+40.             {
+41.                 _isLoading = value;
+42.                 OnPropertyChanged();
+43.             }
+44.         }
+45. 
+46.         public ICommand LoadDataCommand { get; }
+47. 
+48.         public WarehouseDetailViewModel(WarehouseService warehouseService)
+49.         {
+50.             _warehouseService = warehouseService;
+51.             LoadDataCommand = new Command<int>(async (id) => await LoadData(id));
+52.         }
+53. 
+54.         private async Task LoadData(int warehouseId)
+55.         {
+56.             IsLoading = true;
+57.             try
+58.             {
+59.                 Sensors = await _warehouseService.GetSensorsByWarehouseIdAsync(warehouseId);
+60.             }
+61.             catch (Exception ex)
+62.             {
+63.                 await Shell.Current.DisplayAlert("Error", $"Failed to load data: {ex.Message}", "OK");
+64.             }
+65.             finally
+66.             {
+67.                 IsLoading = false;
+68.             }
+69.         }
+70. 
+71.         public event PropertyChangedEventHandler PropertyChanged;
+72. 
+73.         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+74.         {
+75.             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+76.         }
+77. 
+78.         public bool IsValueInRange(SensorDto sensor)
+79.         {
+80.             if (Warehouse == null || sensor == null) return false;
+81. 
+82.             if (sensor.Type == "Temperature")
+83.             {
+84.                 return sensor.Value >= Warehouse.MinTemperature &&
+85.                        sensor.Value <= Warehouse.MaxTemperature;
+86.             }
+87.             else if (sensor.Type == "Humidity")
+88.             {
+89.                 return sensor.Value >= Warehouse.MinHumidity &&
+90.                        sensor.Value <= Warehouse.MaxHumidity;
+91.             }
+92.             return false;
+93.         }
+94. 
+95.     }
+96. }
