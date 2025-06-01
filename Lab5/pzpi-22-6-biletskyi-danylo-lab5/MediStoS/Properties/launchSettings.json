@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "MediStoS": {
+      "commandName": "Project",
+      "launchBrowser": false,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:11641;http://localhost:11642"
+    }
+  }
+}

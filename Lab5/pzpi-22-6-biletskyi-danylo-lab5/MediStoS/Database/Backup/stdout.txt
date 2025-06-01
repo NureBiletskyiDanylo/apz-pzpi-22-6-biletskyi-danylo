@@ -60,40 +60,40 @@ CREATE TABLE
 ALTER TABLE
 ALTER TABLE
 COPY 1
-COPY 22
+COPY 16
+COPY 10
+COPY 1
+COPY 0
+COPY 1
 COPY 11
-COPY 25
-COPY 296
-COPY 8
-COPY 15
  setval 
 --------
-     31
+     17
 (1 строка)
 
  setval 
 --------
-     18
+     11
 (1 строка)
 
  setval 
 --------
-     30
+      1
 (1 строка)
 
  setval 
 --------
-    296
+      1
 (1 строка)
 
  setval 
 --------
-     13
+      1
 (1 строка)
 
  setval 
 --------
-     22
+     12
 (1 строка)
 
 ALTER TABLE
