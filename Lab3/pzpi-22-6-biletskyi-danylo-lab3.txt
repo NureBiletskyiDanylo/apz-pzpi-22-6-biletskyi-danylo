@@ -79,7 +79,7 @@
 7:21 - Реалізація адміністративних функцій з взаємодії з користувачами
 8:39 - Реалізація адміністративних функцій адміністратора бази даних
 
-Посилання на Github: https://github.com/NureBiletskyiDanylo/apz-pzpi-22-6-biletskyi-danylo/tree/main/Lab3
+Посилання на GitHub: https://github.com/NureBiletskyiDanylo/apz-pzpi-22-6-biletskyi-danylo/tree/main/Lab3
  
 ДОДАТОК Б
  Графічні матеріали
