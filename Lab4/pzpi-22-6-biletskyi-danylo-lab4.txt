@@ -69,7 +69,7 @@
 2:07 - Сенсори складського приміщення
 3:10 - Повторне оновлення даних сенсорів складського приміщення при роботі ІоТ клієнту
 
-Посилання на Github: https://github.com/NureBiletskyiDanylo/apz-pzpi-22-6-biletskyi-danylo/tree/main/Lab4
+Посилання на GitHub: https://github.com/NureBiletskyiDanylo/apz-pzpi-22-6-biletskyi-danylo/tree/main/Lab4
  
 ДОДАТОК Б
  Графічні матеріали
