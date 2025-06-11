@@ -77,5 +77,5 @@
 8:11 - Демонстрація інтерфейсу головної сторінки мобільного застосунку
 8:35 - Демонстрація інтерфейсу сторінки складського приміщення у мобільному застосунку
 9:03 - Перевірка синхронізації даних сенсорів у мобільному та веб-застосунках при роботі ІоТ клієнта
-Посилання на Github: https://github.com/NureBiletskyiDanylo/apz-pzpi-22-6-biletskyi-danylo/tree/main/Lab5
+Посилання на GitHub: https://github.com/NureBiletskyiDanylo/apz-pzpi-22-6-biletskyi-danylo/tree/main/Lab5
 
